@@ -31,10 +31,7 @@ function getTodayString() {
 }
 
 function generateEntryId() {
-    const timestamp = Date.now();
-    const randomValue = Math.floor(Math.random() * 1000);
-    const randomPart = randomValue.toString().padStart(3, '0');
-    return `${timestamp}${randomPart}`;
+    return String(Date.now());
 }
 
 function loadEntriesFromStorage() {
