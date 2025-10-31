@@ -5,6 +5,7 @@ let entryListElement;
 let totalCountElement;
 let filterDateInputElement;
 let clearFilterButtonElement;
+let debugClearStorageButtonElement;
 let dateInputElement;
 let typeInputElement;
 let minutesInputElement;
@@ -59,6 +60,7 @@ function assignElementReferences() {
     totalCountElement = document.getElementById('total-count');
     filterDateInputElement = document.getElementById('filter-date');
     clearFilterButtonElement = document.getElementById('clear-filter');
+    debugClearStorageButtonElement = document.getElementById('debug-clear-storage');
     dateInputElement = document.getElementById('date');
     typeInputElement = document.getElementById('type');
     minutesInputElement = document.getElementById('minutes');
@@ -71,6 +73,7 @@ function attachEventListeners() {
     filterDateInputElement.addEventListener('change', renderEntryTable);
     clearFilterButtonElement.addEventListener('click', handleFilterClearButtonClick);
     entryListElement.addEventListener('click', handleEntryListClick);
+    debugClearStorageButtonElement.addEventListener('click', handleDebugClearStorageClick);
 }
 
 function handleFormSubmit(event) {
@@ -103,6 +106,18 @@ function handleFormSubmit(event) {
 function handleFilterClearButtonClick() {
     filterDateInputElement.value = '';
     renderEntryTable();
+}
+
+function handleDebugClearStorageClick() {
+    const message = 'localStorage に保存した全ての記録を削除します。よろしいですか？';
+    if (!window.confirm(message)) {
+        return;
+    }
+
+    localStorage.removeItem(WORKOUT_STORAGE_KEY);
+    filterDateInputElement.value = '';
+    renderEntryTable();
+    window.alert('データを削除しました。');
 }
 
 function handleEntryListClick(event) {
