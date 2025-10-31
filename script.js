@@ -11,9 +11,16 @@ let minutesInputElement;
 let valueInputElement;
 let noteInputElement;
 
+function padToTwoDigits(value) {
+    return value < 10 ? `0${value}` : String(value);
+}
+
 function getTodayString() {
     const today = new Date();
-    return today.toISOString().slice(0, 10);
+    const year = today.getFullYear();
+    const month = padToTwoDigits(today.getMonth() + 1);
+    const day = padToTwoDigits(today.getDate());
+    return `${year}-${month}-${day}`;
 }
 
 function generateEntryId() {
