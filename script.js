@@ -37,10 +37,7 @@ function generateEntryId() {
 
 function loadEntriesFromStorage() {
     const raw = localStorage.getItem(WORKOUT_STORAGE_KEY);
-    if (raw) {
-        return JSON.parse(raw);
-    }
-    return [];
+    return raw ? JSON.parse(raw) : [];
 }
 
 function saveEntriesToStorage(entries) {
@@ -134,12 +131,7 @@ function handleEntryListClick(event) {
 
 function removeEntryById(entryId) {
     const entries = loadEntriesFromStorage();
-    const filteredEntries = [];
-    for (const entry of entries) {
-        if (entry.id !== entryId) {
-            filteredEntries.push(entry);
-        }
-    }
+    const filteredEntries = entries.filter(entry => entry.id !== entryId);
     saveEntriesToStorage(filteredEntries);
     renderEntryTable();
 }
