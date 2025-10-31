@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>毎日の運動トラッカー（シンプル版）</title>
+    <style>
+      body {
+        font-family: sans-serif;
+        margin: 16px;
+      }
+
+      .required::after {
+        content: " *";
+        color: #c00;
+      }
+
+      table {
+        border-collapse: collapse;
+      }
+
+      th,
+      td {
+        border: 1px solid #000;
+        text-align: left;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>毎日の運動トラッカー</h1>
+    <p>とてもシンプルな HTML だけの画面です。</p>
+
+    <h2>新しい記録</h2>
+    <form id="entry-form">
+      <div>
+        <label for="type" class="required">種目</label><br>
+        <select id="type" required>
+          <option value="">選択してください</option>
+          <option>ウォーキング</option>
+          <option>ランニング</option>
+          <option>通学の徒歩</option>
+          <option>筋トレ</option>
+          <option>なわとび</option>
+        </select>
+      </div>
+
+      <div>
+        <label for="date" class="required">日付</label><br>
+        <input id="date" type="date" required>
+      </div>
+
+      <div>
+        <label for="minutes">時間（分）</label><br>
+        <input id="minutes" type="number" min="0" placeholder="例: 30">
+      </div>
+
+      <div>
+        <label for="value">回数 / 距離</label><br>
+        <input id="value" type="number" min="0" placeholder="例: 回数=20 / 距離=5">
+      </div>
+
+      <div>
+        <label for="note">メモ</label><br>
+        <input id="note" type="text" placeholder="ひとことメモ">
+      </div>
+
+      <div>
+        <button type="submit">追加する</button>
+      </div>
+    </form>
+
+    <h2>記録を確認</h2>
+    <div>
+      <label for="filter-date">日付で絞り込み</label><br>
+      <input id="filter-date" type="date">
+    </div>
+    <div>
+      <button id="clear-filter" type="button">絞り込み解除</button>
+      <button id="debug-clear-storage" type="button">Debug: 全削除</button>
+    </div>
+    <p>合計件数：<span id="total-count">0</span></p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>日付</th>
+          <th>種目</th>
+          <th>時間(分)</th>
+          <th>回数/距離</th>
+          <th>メモ</th>
+          <th>操作</th>
+        </tr>
+      </thead>
+      <tbody id="list"></tbody>
+    </table>
+
+    <script src="script.js"></script>
+  </body>
+</html>
