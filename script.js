@@ -12,7 +12,14 @@ let valueInputElement;
 let noteInputElement;
 
 function padToTwoDigits(value) {
-    return value < 10 ? `0${value}` : String(value);
+    return String(value).padStart(2, '0');
+}
+
+function formatDateForInput(value) {
+    const year = value.slice(0, 4);
+    const month = value.slice(4, 6);
+    const day = value.slice(6, 8);
+    return `${year}-${month}-${day}`;
 }
 
 function getTodayString() {
@@ -20,11 +27,14 @@ function getTodayString() {
     const year = today.getFullYear();
     const month = padToTwoDigits(today.getMonth() + 1);
     const day = padToTwoDigits(today.getDate());
-    return `${year}-${month}-${day}`;
+    return `${year}${month}${day}`;
 }
 
 function generateEntryId() {
-    return `${Date.now()}${Math.floor(Math.random() * 10000)}`;
+    const timestamp = Date.now();
+    const randomValue = Math.floor(Math.random() * 1000);
+    const randomPart = randomValue.toString().padStart(3, '0');
+    return `${timestamp}${randomPart}`;
 }
 
 function loadEntriesFromStorage() {
@@ -42,7 +52,7 @@ function saveEntriesToStorage(entries) {
 function initializePage() {
     assignElementReferences();
     attachEventListeners();
-    dateInputElement.value = getTodayString();
+    dateInputElement.value = formatDateForInput(getTodayString());
     renderEntryTable();
 }
 
@@ -67,20 +77,17 @@ function attachEventListeners() {
 }
 
 function handleFormSubmit(event) {
-    if (!dateInputElement || !typeInputElement || !minutesInputElement || !valueInputElement || !noteInputElement) {
-        return;
-    }
-
     event.preventDefault();
 
-    const entry = {};
-    entry.id = generateEntryId();
-    entry.date = dateInputElement.value;
-    entry.type = typeInputElement.value;
-    entry.minutes = parseInt(minutesInputElement.value, 10) || 0;
-    entry.value = parseInt(valueInputElement.value, 10) || 0;
-    entry.note = noteInputElement.value.trim();
-    entry.createdAt = Date.now();
+    const entry = {
+        id: generateEntryId(),
+        date: dateInputElement.value,
+        type: typeInputElement.value,
+        minutes: parseInt(minutesInputElement.value, 10) || 0,
+        value: parseInt(valueInputElement.value, 10) || 0,
+        note: noteInputElement.value.trim(),
+        createdAt: Date.now()
+    };
 
     if (!entry.type || !entry.date) {
         alert('Type and date are required.');
@@ -92,7 +99,7 @@ function handleFormSubmit(event) {
     saveEntriesToStorage(entries);
 
     entryFormElement.reset();
-    dateInputElement.value = getTodayString();
+    dateInputElement.value = formatDateForInput(getTodayString());
     renderEntryTable();
 }
 
