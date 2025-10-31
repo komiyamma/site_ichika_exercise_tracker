@@ -162,7 +162,7 @@ function handleFormSubmit(event) {
     };
 
     if (!entry.type || !entry.date) {
-        alert('Type and date are required.');
+        alert('種類と日付は必須.');
         return;
     }
 
@@ -191,7 +191,7 @@ function handleFilterClearButtonClick() {
  * @returns {void}
  */
 function handleDebugClearStorageClick() {
-    const message = 'localStorage に保存した全ての記録を削除します。よろしいですか？';
+    const message = 'localStorage の「このアプリ関連」の「記録データ全て」を削除します。よろしいですか？';
     if (!window.confirm(message)) {
         return;
     }
