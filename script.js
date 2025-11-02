@@ -137,7 +137,6 @@ function attachEventListeners() {
     entryFormElement.addEventListener('submit', handleFormSubmit);
     filterDateInputElement.addEventListener('change', renderEntryTable);
     clearFilterButtonElement.addEventListener('click', handleFilterClearButtonClick);
-    entryListElement.addEventListener('click', handleEntryListClick);
     debugClearStorageButtonElement.addEventListener('click', handleDebugClearStorageClick);
 }
 
@@ -203,21 +202,16 @@ function handleDebugClearStorageClick() {
 }
 
 /**
- * 一覧のどこかがクリックされたときの処理。
- * 削除ボタンを探し出し、対応するエントリーを削除します。
- * @param {MouseEvent} event クリックイベント。
+ * 削除ボタンから呼び出され、対応するエントリーを削除します。
+ * ボタンの HTML で `onclick="removeButtonClick('id')"` のように利用します。
+ * @param {string} entryId 削除したいエントリーの ID。
  * @returns {void}
  */
-function handleEntryListClick(event) {
-    const targetButton = event.target.closest('button[data-id]');
-    if (!targetButton || !entryListElement.contains(targetButton)) {
+function removeButtonClick(entryId) {
+    if (!entryId) {
         return;
     }
-
-    const entryId = targetButton.getAttribute('data-id');
-    if (entryId) {
-        removeEntryById(entryId);
-    }
+    removeEntryById(entryId);
 }
 
 /**
@@ -240,6 +234,7 @@ function removeEntryById(entryId) {
 function renderEntryTable() {
     const entries = loadEntriesFromStorage();
     const selectedDate = filterDateInputElement.value;
+    // 一致する日付だけを集める（未指定なら全件を入れる）
     /** @type {Array<WorkoutEntry>} */
     const filteredEntries = [];
 
@@ -257,6 +252,7 @@ function renderEntryTable() {
 
     let tableHtml = '';
     for (const currentEntry of filteredEntries) {
+        // 1行ずつ HTML を組み立てる（Delete ボタンには data-id を付与）
         tableHtml += `<tr>
     <td>${currentEntry.date}</td>
     <td>${currentEntry.type}</td>
@@ -264,7 +260,7 @@ function renderEntryTable() {
     <td class="text-end">${currentEntry.value || ''}</td>
     <td>${currentEntry.note || ''}</td>
     <td class="text-end">
-        <button class="delete-button btn btn-sm btn-outline-danger" data-id="${currentEntry.id}">Delete</button>
+        <button class="delete-button btn btn-sm btn-outline-danger" data-id="${currentEntry.id}" onclick="removeButtonClick('${currentEntry.id}')">Delete</button>
     </td>
 </tr>`;
     }
