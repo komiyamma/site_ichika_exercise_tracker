@@ -209,14 +209,14 @@ function handleDebugClearStorageClick() {
  * @returns {void}
  */
 function handleEntryListClick(event) {
-    let currentElement = event.target;
-    while (currentElement && currentElement !== entryListElement) {
-        const entryId = currentElement.getAttribute ? currentElement.getAttribute('data-id') : null;
-        if (entryId) {
-            removeEntryById(entryId);
-            return;
-        }
-        currentElement = currentElement.parentElement;
+    const targetButton = event.target.closest('button[data-id]');
+    if (!targetButton || !entryListElement.contains(targetButton)) {
+        return;
+    }
+
+    const entryId = targetButton.getAttribute('data-id');
+    if (entryId) {
+        removeEntryById(entryId);
     }
 }
 
