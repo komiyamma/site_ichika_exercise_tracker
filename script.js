@@ -234,14 +234,10 @@ function removeEntryById(entryId) {
 function renderEntryTable() {
     const entries = loadEntriesFromStorage();
     const selectedDate = filterDateInputElement.value;
-    // 一致する日付だけを集める（未指定なら全件を入れる）
-    /** @type {Array<WorkoutEntry>} */
-    const filteredEntries = [];
-
-    for (const entry of entries) {
-        if (!selectedDate || entry.date === selectedDate) {
-            filteredEntries.push(entry);
-        }
+    // 日付が指定されていれば一致するものだけ抽出、空ならそのまま全件を使う
+    let filteredEntries = entries;
+    if (selectedDate) {
+        filteredEntries = entries.filter(entry => entry.date === selectedDate);
     }
 
     filteredEntries.sort((a, b) => {
@@ -253,16 +249,17 @@ function renderEntryTable() {
     let tableHtml = '';
     for (const currentEntry of filteredEntries) {
         // 1行ずつ HTML を組み立てる（Delete ボタンには data-id を付与）
-        tableHtml += `<tr>
-    <td>${currentEntry.date}</td>
-    <td>${currentEntry.type}</td>
-    <td class="text-end">${currentEntry.minutes || ''}</td>
-    <td class="text-end">${currentEntry.value || ''}</td>
-    <td>${currentEntry.note || ''}</td>
-    <td class="text-end">
-        <button class="delete-button btn btn-sm btn-outline-danger" data-id="${currentEntry.id}" onclick="removeButtonClick('${currentEntry.id}')">Delete</button>
-    </td>
-</tr>`;
+        tableHtml +=
+            `<tr>
+                <td>${currentEntry.date}</td>
+                <td>${currentEntry.type}</td>
+                <td class="text-end">${currentEntry.minutes || ''}</td>
+                <td class="text-end">${currentEntry.value || ''}</td>
+                <td>${currentEntry.note || ''}</td>
+                <td class="text-end">
+                    <button class="delete-button btn btn-sm btn-outline-danger" data-id="${currentEntry.id}" onclick="removeButtonClick('${currentEntry.id}')">Delete</button>
+                </td>
+            </tr>`;
     }
 
     entryListElement.innerHTML = tableHtml;
