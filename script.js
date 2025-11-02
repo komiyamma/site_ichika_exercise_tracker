@@ -264,7 +264,7 @@ function renderEntryTable() {
     <td class="text-end">${currentEntry.value || ''}</td>
     <td>${currentEntry.note || ''}</td>
     <td class="text-end">
-        <button class="btn btn-sm btn-outline-danger" data-id="${currentEntry.id}">Delete</button>
+        <button class="delete-button btn btn-sm btn-outline-danger" data-id="${currentEntry.id}">Delete</button>
     </td>
 </tr>`;
     }
