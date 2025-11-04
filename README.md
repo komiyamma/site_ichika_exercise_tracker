@@ -1,7 +1,7 @@
 # 毎日の運動トラッカー
 
 こんにちは！ この「毎日の運動トラッカー」は、JavaScriptとlocalStorage（Webブラウザの保存機能）だけで作った、シンプルなアプリです。
-`index.html` や `index2.html` をブラウザで開くとすぐに使えます。
+`index.html` や `index.bootstrap.html` をブラウザで開くとすぐに使えます。
 
 ## このアプリでできること
 
@@ -16,12 +16,12 @@
 
 ## 2つのHTMLファイルについて
 
-このプロジェクトには `index.html` と `index2.html` の2つのファイルがあります。
+このプロジェクトには `index.html` と `index.bootstrap.html` の2つのファイルがあります。
 
 * **`index.html`**
     * こちらは[Bootstrap](https://getbootstrap.jp/)という、見た目をキレイに整えるための「ライブラリ」を使っています。
     * 多くのWebサイトで使われているので、どんなものか見てみるのも面白いですよ。
-* **`index2.html`**
+* **`index.bootstrap.html`**
     * こちらはBootstrapを使わず、HTMLと少しのCSSだけで作られています。
     * JavaScriptの動きだけに集中したいときは、こちらを見るとコードがシンプルで分かりやすいです。
 
