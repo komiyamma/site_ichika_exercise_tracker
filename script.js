@@ -35,93 +35,9 @@ let minutesInputElement;
 let valueInputElement;
 let noteInputElement;
 
-/**
- * 数値を必ず 2 桁の文字列にそろえます。
- * 例: 3 -> "03" / 12 -> "12"
- * @param {number|string} value 2 桁に整形したい値。
- * @returns {string} 2 桁の文字列。
- */
-function padToTwoDigits(value) {
-    return String(value).padStart(2, '0');
-}
-
-/**
- * YYYYMMDD 形式の文字列を、input[type="date"] 用の YYYY-MM-DD に変換します。
- * @param {string} value 8 桁の日付文字列 (例: "20240131")。
- * @returns {string} HTML の日付入力に使える形式の文字列。
- */
-function formatDateForInput(value) {
-    const year = value.slice(0, 4);
-    const month = value.slice(4, 6);
-    const day = value.slice(6, 8);
-    return `${year}-${month}-${day}`;
-}
-
-/**
- * 今日の日付を YYYYMMDD の文字列で取得します。
- * @returns {string} 現在の日付を表す 8 桁の文字列。
- */
-function getTodayString() {
-    const today = new Date();
-    const year = today.getFullYear();
-    const month = padToTwoDigits(today.getMonth() + 1);
-    const day = padToTwoDigits(today.getDate());
-    return `${year}${month}${day}`;
-}
-
-/**
- * エントリーを区別するための一意な ID を作成します。
- * Date.now() はミリ秒単位で変化するため、同じ値になる可能性が極めて低いです。
- * @returns {string} 新しいエントリー ID。
- */
-function generateEntryId() {
-    return String(Date.now());
-}
-
-/**
- * innerHTML に入れる前に危険な文字をエスケープします。
- * @param {string|number} value 表示したい内容。
- * @returns {string} HTML エスケープ済みの文字列。
- */
-function escapeHtml(value) {
-    if (value === undefined || value === null) {
-        return '';
-    }
-
-    return String(value)
-        .replace(/&/g, '&amp;')
-        .replace(/</g, '&lt;')
-        .replace(/>/g, '&gt;')
-        .replace(/"/g, '&quot;')
-        .replace(/'/g, '&#39;');
-}
-
-/**
- * ローカルストレージからすべての運動記録エントリを読み込みます。
- * @returns {ExerciseEntry[]} 読み込んだ運動記録エントリの配列。ストレージに何もない場合や、データの読み込みに失敗した場合は空の配列。
- */
-function loadEntriesFromStorage() {
-    try {
-        const entriesJson = localStorage.getItem(STORAGE_KEY);
-        return entriesJson ? JSON.parse(entriesJson) : [];
-    } catch (e) {
-        console.error('ストレージからのデータ読み込みに失敗しました:', e);
-        return [];
-    }
-}
-
-/**
- * 指定された運動記録エントリの配列をローカルストレージに保存します。
- * @param {ExerciseEntry[]} entries - 保存する運動記録エントリの配列。
- */
-function saveEntriesToStorage(entries) {
-    try {
-        const entriesJson = JSON.stringify(entries);
-        localStorage.setItem(STORAGE_KEY, entriesJson);
-    } catch (e) {
-        console.error('ストレージへのデータ保存に失敗しました:', e);
-    }
-}
+// ===================================================================================
+// 初期化・エントリーポイント (処理の起点)
+// ===================================================================================
 
 /**
  * ページ読み込み完了後に一度だけ実行する初期化処理です。
@@ -165,6 +81,10 @@ function attachEventListeners() {
     clearFilterButtonElement.addEventListener('click', handleFilterClearButtonClick);
     debugClearStorageButtonElement.addEventListener('click', handleDebugClearStorageClick);
 }
+
+// ===================================================================================
+// イベントハンドラ (ユーザー操作への反応)
+// ===================================================================================
 
 /**
  * フォーム送信時の処理。
@@ -240,17 +160,9 @@ function removeButtonClick(entryId) {
     removeEntryById(entryId);
 }
 
-/**
- * 指定された ID のエントリーを localStorage から削除し、一覧を更新します。
- * @param {string} entryId 削除したいエントリーの ID。
- * @returns {void}
- */
-function removeEntryById(entryId) {
-    const entries = loadEntriesFromStorage();
-    const filteredEntries = entries.filter(entry => entry.id !== entryId);
-    saveEntriesToStorage(filteredEntries);
-    renderEntryTable();
-}
+// ===================================================================================
+// DOM描画 (画面の更新)
+// ===================================================================================
 
 /**
  * テーブル表示を最新状態に更新します。
@@ -289,6 +201,118 @@ function renderEntryTable() {
 
     entryListElement.innerHTML = tableHtml;
 }
+
+// ===================================================================================
+// データ操作 (データの読み書き)
+// ===================================================================================
+
+/**
+ * ローカルストレージからすべての運動記録エントリを読み込みます。
+ * @returns {ExerciseEntry[]} 読み込んだ運動記録エントリの配列。ストレージに何もない場合や、データの読み込みに失敗した場合は空の配列。
+ */
+function loadEntriesFromStorage() {
+    try {
+        const entriesJson = localStorage.getItem(WORKOUT_STORAGE_KEY);
+        return entriesJson ? JSON.parse(entriesJson) : [];
+    } catch (e) {
+        console.error('ストレージからのデータ読み込みに失敗しました:', e);
+        return [];
+    }
+}
+
+/**
+ * 指定された運動記録エントリの配列をローカルストレージに保存します。
+ * @param {ExerciseEntry[]} entries - 保存する運動記録エントリの配列。
+ */
+function saveEntriesToStorage(entries) {
+    try {
+        const entriesJson = JSON.stringify(entries);
+        localStorage.setItem(WORKOUT_STORAGE_KEY, entriesJson);
+    } catch (e) {
+        console.error('ストレージへのデータ保存に失敗しました:', e);
+    }
+}
+
+/**
+ * 指定された ID のエントリーを localStorage から削除し、一覧を更新します。
+ * @param {string} entryId 削除したいエントリーの ID。
+ * @returns {void}
+ */
+function removeEntryById(entryId) {
+    const entries = loadEntriesFromStorage();
+    const filteredEntries = entries.filter(entry => entry.id !== entryId);
+    saveEntriesToStorage(filteredEntries);
+    renderEntryTable();
+}
+
+// ===================================================================================
+// ユーティリティ / ヘルパー関数 (便利ツール)
+// ===================================================================================
+
+/**
+ * 数値を必ず 2 桁の文字列にそろえます。
+ * 例: 3 -> "03" / 12 -> "12"
+ * @param {number|string} value 2 桁に整形したい値。
+ * @returns {string} 2 桁の文字列。
+ */
+function padToTwoDigits(value) {
+    return String(value).padStart(2, '0');
+}
+
+/**
+ * YYYYMMDD 形式の文字列を、input[type="date"] 用の YYYY-MM-DD に変換します。
+ * @param {string} value 8 桁の日付文字列 (例: "20240131")。
+ * @returns {string} HTML の日付入力に使える形式の文字列。
+ */
+function formatDateForInput(value) {
+    const year = value.slice(0, 4);
+    const month = value.slice(4, 6);
+    const day = value.slice(6, 8);
+    return `${year}-${month}-${day}`;
+}
+
+/**
+ * 今日の日付を YYYYMMDD の文字列で取得します。
+ * @returns {string} 現在の日付を表す 8 桁の文字列。
+ */
+function getTodayString() {
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = padToTwoDigits(today.getMonth() + 1);
+    const day = padToTwoDigits(today.getDate());
+    return `${year}${month}${day}`;
+}
+
+/**
+ * エントリーを区別するための一意な ID を作成します。
+ * Date.now() はミリ秒単位で変化するため、同じ値になる可能性が極めて低いです。
+ * @returns {string} 新しいエントリー ID。
+ */
+function generateEntryId() {
+    return String(Date.now());
+}
+
+/**
+ * innerHTML に入れる前に危険な文字をエスケープします。
+ * @param {string|number} value 表示したい内容。
+ * @returns {string} HTML エスケープ済みの文字列。
+ */
+function escapeHtml(value) {
+    if (value === undefined || value === null) {
+        return '';
+    }
+
+    return String(value)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+}
+
+// ===================================================================================
+// アプリケーションの起動
+// ===================================================================================
 
 /**
  * ページの HTML が全て読み込まれたタイミングで初期化処理を呼び出します。
