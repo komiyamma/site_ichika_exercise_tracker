@@ -79,6 +79,24 @@ function generateEntryId() {
 }
 
 /**
+ * innerHTML に入れる前に危険な文字をエスケープします。
+ * @param {string|number} value 表示したい内容。
+ * @returns {string} HTML エスケープ済みの文字列。
+ */
+function escapeHtml(value) {
+    if (value === undefined || value === null) {
+        return '';
+    }
+
+    return String(value)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+}
+
+/**
  * localStorage から運動記録の配列を取り出します。
  * 保存データが無ければ空配列を返し、コード側で扱いやすくします。
  * @returns {Array<WorkoutEntry>} 保存されているエントリーの配列。
@@ -248,16 +266,17 @@ function renderEntryTable() {
 
     let tableHtml = '';
     for (const currentEntry of filteredEntries) {
+        const { date, type, minutes, value, note, id } = currentEntry;
         // 1行ずつ HTML を組み立てる（Delete ボタンには data-id を付与）
         tableHtml +=
             `<tr>
-                <td>${currentEntry.date}</td>
-                <td>${currentEntry.type}</td>
-                <td class="text-end">${currentEntry.minutes || ''}</td>
-                <td class="text-end">${currentEntry.value || ''}</td>
-                <td>${currentEntry.note || ''}</td>
+                <td>${escapeHtml(date)}</td>
+                <td>${escapeHtml(type)}</td>
+                <td class="text-end">${escapeHtml(minutes || '')}</td>
+                <td class="text-end">${escapeHtml(value || '')}</td>
+                <td>${escapeHtml(note || '')}</td>
                 <td class="text-end">
-                    <button class="delete-button btn btn-sm btn-outline-danger" data-id="${currentEntry.id}" onclick="removeButtonClick('${currentEntry.id}')">Delete</button>
+                    <button class="delete-button btn btn-sm btn-outline-danger" data-id="${id}" onclick="removeButtonClick('${id}')">Delete</button>
                 </td>
             </tr>`;
     }
