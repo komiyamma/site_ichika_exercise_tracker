@@ -266,9 +266,7 @@ function renderEntryTable() {
         filteredEntries = entries.filter(entry => entry.date === selectedDate);
     }
 
-    filteredEntries.sort((a, b) => {
-        return b.createdAt - a.createdAt;
-    });
+    filteredEntries.sort((a, b) =>  b.createdAt - a.createdAt);
 
     totalCountElement.textContent = String(filteredEntries.length);
 
