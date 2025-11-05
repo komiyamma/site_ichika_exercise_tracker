@@ -266,7 +266,7 @@ function renderEntryTable() {
 
     let tableHtml = '';
     for (const currentEntry of filteredEntries) {
-        const { date, type, minutes, value, note, id } = currentEntry;
+        const { id, date, type, minutes, value, note} = currentEntry;
         // 1行ずつ HTML を組み立てる（Delete ボタンには data-id を付与）
         tableHtml +=
             `<tr>
