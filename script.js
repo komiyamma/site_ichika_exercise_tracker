@@ -195,7 +195,7 @@ function handleFormSubmit(event) {
     entries.push(entry);
     saveEntriesToStorage(entries);
 
-    entryFormElement.reset();
+    event.target.reset();
     dateInputElement.value = formatDateForInput(getTodayString());
     renderEntryTable();
 }
