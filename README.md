@@ -17,6 +17,7 @@
 
 ## この解説で登場させる予定の中核キャラクター
 <img src="ichika_exercise_tracker_character_image.png" alt="Ichika Exercise Tracker Character Image" width="200"/>
+<img src="ichika_exercise_tracker_character_calender.png" alt="Ichika Exercise Tracker Character Calender" width="200"/>
 
 ---
 
