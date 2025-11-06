@@ -9,7 +9,7 @@ const WORKOUT_STORAGE_KEY = 'ichikaWorkoutLogEntries';
  * 1 件分の運動記録を表すオブジェクトの形をまとめて定義しておきます。
  * 項目の意味を再確認したいときにここを見るだけで済むようにしています。
  * @typedef {Object} WorkoutEntry
- * @property {string} id 削除などで使う一意な ID。
+ * @property {string} id 削除などで使う一意な ID（作成時刻のタイムスタンプを文字列化したもの）。
  * @property {string} date YYYY-MM-DD 形式の日付。
  * @property {string} type 実施したメニューの種別。
  * @property {number} minutes 所要時間（分）。未入力時は 0。
@@ -95,15 +95,17 @@ function attachEventListeners() {
 function handleFormSubmit(event) {
     event.preventDefault();
 
+    const timestamp = generateEntryId();
+
     /** @type {WorkoutEntry} */
     const entry = {
-        id: generateEntryId(),
+        id: String(timestamp),
         date: dateInputElement.value,
         type: typeInputElement.value,
         minutes: parseInt(minutesInputElement.value, 10) || 0,
         value: parseInt(valueInputElement.value, 10) || 0,
         note: noteInputElement.value.trim(),
-        createdAt: Date.now()
+        createdAt: timestamp
     };
 
     if (!entry.type || !entry.date) {
@@ -286,10 +288,10 @@ function getTodayString() {
 /**
  * エントリーを区別するための一意な ID を作成します。
  * Date.now() はミリ秒単位で変化するため、同じ値になる可能性が極めて低いです。
- * @returns {string} 新しいエントリー ID。
+ * @returns {number} 作成時刻のタイムスタンプ。
  */
 function generateEntryId() {
-    return String(Date.now());
+    return Date.now();
 }
 
 /**
