@@ -2,6 +2,14 @@
 
 （別リポジトリへの投稿データ用です）
 
+## 簡易 index.html
+
+- https://komiyamma.github.io/site_ichika_exercise_tracker/index.html
+
+## Bootstrap 版 index.html
+
+- https://komiyamma.github.io/site_ichika_exercise_tracker/index.bootstrap.html
+
 ---
 
 # 毎日の運動トラッカー
