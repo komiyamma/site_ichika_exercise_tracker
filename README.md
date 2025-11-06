@@ -6,14 +6,17 @@
 
 - https://komiyamma.github.io/site_ichika_exercise_tracker/index.html
 
-## Bootstrap 版 index.html
+<img src="ichika_exercise_tracker_character_base.png" width="300"/>
+
+## Bootstrap 版 index.bootstrap.html
 
 - https://komiyamma.github.io/site_ichika_exercise_tracker/index.bootstrap.html
+
+<img src="ichika_exercise_tracker_character_bootstrap.png" width="800"/>
 
 
 ## この解説で登場させる予定の中核キャラクター
 <img src="ichika_exercise_tracker_character_image.png" alt="Ichika Exercise Tracker Character Image" width="200"/>
-
 
 ---
 
