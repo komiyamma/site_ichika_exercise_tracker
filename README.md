@@ -10,6 +10,11 @@
 
 - https://komiyamma.github.io/site_ichika_exercise_tracker/index.bootstrap.html
 
+
+## この解説で登場させる予定の中核キャラクター
+<img src="ichika_exercise_tracker_character_image.png" alt="Ichika Exercise Tracker Character Image" width="200"/>
+
+
 ---
 
 # 毎日の運動トラッカー
