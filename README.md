@@ -32,6 +32,28 @@
 ### スニッキー
 <img src="ichika_exercise_tracker_character_snikky.png" width="200"/>
 
+## この解説での誘惑を担当するキャラクター
+
+### ベリノアージュ
+
+<img src="ichika_exercise_tracker_character_berinoage.png" width="200"/>
+### ストロベリーヌ
+
+<img src="ichika_exercise_tracker_character_ex_stroberine.png" width="200"/>
+
+### ソフトちゃん
+
+<img src="ichika_exercise_tracker_character_soft.png" width="200"/>
+
+### カプケちゃん
+
+<img src="ichika_exercise_tracker_character_kapuke.png" width="200"/>
+
+### ラムネ姉さん
+
+<img src="ichika_exercise_tracker_character_ramune.png" width="200"/>
+
+
 ---
 
 # 毎日の運動トラッカー
