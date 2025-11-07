@@ -13,14 +13,14 @@
 - **URL:** [https://komiyamma.github.io/site_ichika_exercise_tracker/index.html](https://komiyamma.github.io/site_ichika_exercise_tracker/index.html)
 - **特徴:** CSSフレームワークを使わず、素のHTMLと少しのCSSだけで作られています。JavaScriptの基本的な動きやDOM操作に集中して学びたいときにピッタリです。
 
-<img src="ichika_exercise_tracker_character_base.png" width="300"/>
+<img src="ichika_exercise_tracker_index_image.png.png" width="300"/>
 
 ### 2. Bootstrap版 (`index.bootstrap.html`)
 
 - **URL:** [https://komiyamma.github.io/site_ichika_exercise_tracker/index.bootstrap.html](https://komiyamma.github.io/site_ichika_exercise_tracker/index.bootstrap.html)
 - **特徴:** 見た目を整えるための人気CSSフレームワーク [Bootstrap](https://getbootstrap.jp/) を使っています。モダンなWebサイトがどのように作られているのか、ライブラリを使うとどれだけ効率的に開発できるのかを体験できます。
 
-<img src="ichika_exercise_tracker_character_bootstrap.png" width="800"/>
+<img src="ichika_exercise_tracker_index_bootstrap.png" width="800"/>
 
 **ポイント💡**
 どちらのHTMLも、裏側で動いている **`script.js` は全く同じもの** を使っています。
@@ -46,6 +46,7 @@
 | **紙ロールちゃん** | <img src="ichika_exercise_tracker_character_kami_roll.png" width="150"/> |
 | **りんりん** | <img src="ichika_exercise_tracker_character_rinrin.png" width="150"/> |
 | **スニッキー** | <img src="ichika_exercise_tracker_character_snikky.png" width="150"/> |
+| **パレティーナ** | <img src="ichika_exercise_tracker_character_palettina.png" width="150"/> |
 
 ### 敵役キャラクター
 | キャラクター | 画像 |
@@ -57,6 +58,10 @@
 | **ラムネェさん** | <img src="ichika_exercise_tracker_character_ex_ramune.png" width="150"/> |
 
 ---
+
+
+
+--- 
 
 この教材が、あなたのWeb開発学習の楽しい第一歩になることを願っています！
 さあ、一緒に頑張りましょう！✨
