@@ -50,7 +50,7 @@
 
 <img width="200" height="195" alt="Image" src="https://github.com/user-attachments/assets/0bcac85b-fa60-4616-ad1c-f98c9a32a438" />
 
-### ラムネ姉さん
+### ラムネェさん
 
 <img src="ichika_exercise_tracker_character_ex_ramune.png" width="200"/>
 
