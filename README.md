@@ -78,11 +78,11 @@
 このプロジェクトには `index.html` と `index.bootstrap.html` の2つのファイルがあります。
 
 * **`index.html`**
-    * こちらは[Bootstrap](https://getbootstrap.jp/)という、見た目をキレイに整えるための「ライブラリ」を使っています。
-    * 多くのWebサイトで使われているので、どんなものか見てみるのも面白いですよ。
-* **`index.bootstrap.html`**
     * こちらはBootstrapを使わず、HTMLと少しのCSSだけで作られています。
     * JavaScriptの動きだけに集中したいときは、こちらを見るとコードがシンプルで分かりやすいです。
+* **`index.bootstrap.html`**
+    * こちらは[Bootstrap](https://getbootstrap.jp/)という、見た目をキレイに整えるための「ライブラリ」を使っています。
+    * 多くのWebサイトで使われているので、どんなものか見てみるのも面白いですよ。
 
 **`script.js`はどちらのHTMLからも共通で使われています。**
 見た目が違っても、裏側で動いているJavaScriptは同じ、ということを体験してみてください。
