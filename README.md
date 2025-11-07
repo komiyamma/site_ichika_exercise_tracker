@@ -15,7 +15,7 @@
 <img src="ichika_exercise_tracker_character_bootstrap.png" width="800"/>
 
 
-## この解説で登場させる予定の中核キャラクター
+## この解説で登場させる予定の味方役のキャラクター達
 
 ### なわりん
 <img src="ichika_exercise_tracker_character_nawarin.png" width="200"/>
@@ -32,7 +32,7 @@
 ### スニッキー
 <img src="ichika_exercise_tracker_character_snikky.png" width="200"/>
 
-## この解説での誘惑を担当するキャラクター
+## この解説で登場させる予定の味方役の敵役キャラクター達
 
 ### ベリノアージュ
 
