@@ -20,7 +20,7 @@
 ### なわりん
 <img src="ichika_exercise_tracker_character_nawarin.png" width="200"/>
 
-### カレダちゃん
+### カレダ姉さん
 <img src="ichika_exercise_tracker_character_caleda.png" width="200"/>
 
 ### メモリナ姉さん
