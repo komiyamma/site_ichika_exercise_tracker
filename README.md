@@ -16,8 +16,18 @@
 
 
 ## この解説で登場させる予定の中核キャラクター
-<img src="ichika_exercise_tracker_character_image.png" alt="Ichika Exercise Tracker Character Image" width="200"/>
-<img src="ichika_exercise_tracker_character_calender.png" alt="Ichika Exercise Tracker Character Calender" width="200"/>
+
+### なわりん
+<img src="ichika_exercise_tracker_character_nawarin.png" width="200"/>
+
+### カレダちゃん
+<img src="ichika_exercise_tracker_character_caleda.png" width="200"/>
+
+### メモリナ姉さん
+<img src="ichika_exercise_tracker_character_memorina.png" width="200"/>
+
+### りんりん
+<img src="ichika_exercise_tracker_character_rinrin.png" width="200"/>
 
 ---
 
