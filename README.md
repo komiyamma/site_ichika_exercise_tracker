@@ -27,7 +27,7 @@
 <img src="ichika_exercise_tracker_character_memorina.png" width="200"/>
 
 ### 紙ロールちゃん
-<img src="ichika_exercise_tracker_character_kamiroll.png" width="200"/>
+<img src="ichika_exercise_tracker_character_kami_roll.png" width="200"/>
 
 ### りんりん
 <img src="ichika_exercise_tracker_character_rinrin.png" width="200"/>
