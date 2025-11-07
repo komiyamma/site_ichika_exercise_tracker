@@ -13,7 +13,7 @@
 - **URL:** [https://komiyamma.github.io/site_ichika_exercise_tracker/index.html](https://komiyamma.github.io/site_ichika_exercise_tracker/index.html)
 - **特徴:** CSSフレームワークを使わず、素のHTMLと少しのCSSだけで作られています。JavaScriptの基本的な動きやDOM操作に集中して学びたいときにピッタリです。
 
-<img src="ichika_exercise_tracker_index_image.png.png" width="300"/>
+<img src="ichika_exercise_tracker_index_image.png" width="300"/>
 
 ### 2. Bootstrap版 (`index.bootstrap.html`)
 
