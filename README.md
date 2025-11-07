@@ -65,11 +65,11 @@
 ### 味方キャラクター
 | キャラクター | 画像 |
 | :--- | :---: |
-| **なわりん** | <img src="ichika_exercise_tracker_character_nawarin.png" width="206"/> |
+| **なわりん** | <img src="ichika_exercise_tracker_character_nawarin.png" width="150"/> |
 | **カレダ姉さん** | <img src="ichika_exercise_tracker_character_caleda.png" width="150"/> |
 | **メモリナ姉さん** | <img src="ichika_exercise_tracker_character_memorina.png" width="150"/> |
 | **紙ロールちゃん** | <img src="ichika_exercise_tracker_character_kami_roll.png" width="150"/> |
-| **りんりん** | <img src="ichika_exercise_tracker_character_rinrin.png" width="206"/> |
+| **りんりん** | <img src="ichika_exercise_tracker_character_rinrin.png" width="150"/> |
 | **スニッキー** | <img src="ichika_exercise_tracker_character_snikky.png" width="150"/> |
 | **パレティーナ** | <img src="ichika_exercise_tracker_character_palettina.png" width="150"/> |
 
