@@ -30,7 +30,7 @@
 <img src="ichika_exercise_tracker_character_rinrin.png" width="200"/>
 
 ### スニッキー
-<img src="ichika_exercise_tracker_character_snickey.png" width="200"/>
+<img src="ichika_exercise_tracker_character_snikky.png" width="200"/>
 
 ---
 
