@@ -26,6 +26,9 @@
 ### メモリナ姉さん
 <img src="ichika_exercise_tracker_character_memorina.png" width="200"/>
 
+### 紙ロールちゃん
+<img src="ichika_exercise_tracker_character_kamiroll.png" width="200"/>
+
 ### りんりん
 <img src="ichika_exercise_tracker_character_rinrin.png" width="200"/>
 
