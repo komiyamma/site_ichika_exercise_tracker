@@ -29,6 +29,9 @@
 ### りんりん
 <img src="ichika_exercise_tracker_character_rinrin.png" width="200"/>
 
+### スニッキー
+<img src="ichika_exercise_tracker_character_snickey.png" width="200"/>
+
 ---
 
 # 毎日の運動トラッカー
