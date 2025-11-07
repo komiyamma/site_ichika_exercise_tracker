@@ -57,9 +57,9 @@
 | **ラムネェさん** | <img src="ichika_exercise_tracker_character_ex_ramune.png" width="150"/> |
 
 ---
+
 この教材が、あなたのWeb開発学習の楽しい第一歩になることを願っています！
 さあ、一緒に頑張りましょう！✨
 
-<p align="center">
-<h1><a href="D01.md">次の章へ</a></h1>
-</p>
+---
+<h1><a href="D01.md">day0 へ</a></h1>
