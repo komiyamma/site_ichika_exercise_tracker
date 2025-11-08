@@ -13,14 +13,14 @@
 - **URL:** [https://komiyamma.github.io/site_ichika_exercise_tracker/index.html](https://komiyamma.github.io/site_ichika_exercise_tracker/index.html)
 - **特徴:** CSSフレームワークを使わず、素のHTMLと少しのCSSだけで作られています。JavaScriptの基本的な動きやDOM操作に集中して学びたいときにピッタリです。
 
-<img src="ichika_exercise_tracker_index_image.png" width="300"/>
+<img src="./images/ichika_exercise_tracker_index_image.png" width="300"/>
 
 ### 2. Bootstrap版 (`index.bootstrap.html`)
 
 - **URL:** [https://komiyamma.github.io/site_ichika_exercise_tracker/index.bootstrap.html](https://komiyamma.github.io/site_ichika_exercise_tracker/index.bootstrap.html)
 - **特徴:** 見た目を整えるための人気CSSフレームワーク [Bootstrap](https://getbootstrap.jp/) を使っています。モダンなWebサイトがどのように作られているのか、ライブラリを使うとどれだけ効率的に開発できるのかを体験できます。
 
-<img src="ichika_exercise_tracker_index_bootstrap.png" width="800"/>
+<img src="./images/ichika_exercise_tracker_index_bootstrap.png" width="800"/>
 
 **ポイント💡**
 どちらのHTMLも、裏側で動いている **`script.js` は全く同じもの** を使っています。
@@ -59,21 +59,21 @@
 ### 味方キャラクター
 | キャラクター | 画像 |
 | :--- | :---: |
-| **なわりん** | <img src="ichika_exercise_tracker_character_nawarin.png" width="150"/> |
-| **カレダ姉さん** | <img src="ichika_exercise_tracker_character_caleda.png" width="150"/> |
-| **メモリナ姉さん** | <img src="ichika_exercise_tracker_character_memorina.png" width="150"/> |
-| **紙ロールちゃん** | <img src="ichika_exercise_tracker_character_kami_roll.png" width="150"/> |
-| **りんりん** | <img src="ichika_exercise_tracker_character_rinrin.png" width="150"/> |
-| **スニッキー** | <img src="ichika_exercise_tracker_character_snikky.png" width="150"/> |
-| **パレティーナ** | <img src="ichika_exercise_tracker_character_palettina.png" width="150"/> |
+| **なわりん** | <img src="./images/ichika_exercise_tracker_character_nawarin.png" width="150"/> |
+| **カレダ姉さん** | <img src="./images/ichika_exercise_tracker_character_caleda.png" width="150"/> |
+| **メモリナ姉さん** | <img src="./images/ichika_exercise_tracker_character_memorina.png" width="150"/> |
+| **紙ロールちゃん** | <img src="./images/ichika_exercise_tracker_character_kami_roll.png" width="150"/> |
+| **りんりん** | <img src="./images/ichika_exercise_tracker_character_rinrin.png" width="150"/> |
+| **スニッキー** | <img src="./images/ichika_exercise_tracker_character_snikky.png" width="150"/> |
+| **パレティーナ** | <img src="./images/ichika_exercise_tracker_character_palettina.png" width="150"/> |
 
 ### 敵役キャラクター
 | キャラクター | 画像 |
 | :--- | :---: |
-| **ベリノアージュ** | <img src="ichika_exercise_tracker_character_ex_berynoage.png" width="150"/> |
-| **ストロベリーヌ** | <img src="ichika_exercise_tracker_character_ex_stroberine.png" width="150"/> |
-| **ソフトちゃん** | <img src="ichika_exercise_tracker_character_ex_soft.png" width="150"/> |
-| **カプケちゃん** | <img width="150" alt="Image" src="https://github.com/user-attachments/assets/0bcac85b-fa60-4616-ad1c-f98c9a32a438" /> |
-| **ラムネェさん** | <img src="ichika_exercise_tracker_character_ex_ramune.png" width="150"/> |
+| **ベリノアージュ** | <img src="./images/ichika_exercise_tracker_character_ex_berynoage.png" width="150"/> |
+| **ストロベリーヌ** | <img src="./images/ichika_exercise_tracker_character_ex_stroberine.png" width="150"/> |
+| **ソフトちゃん** | <img src="./images/ichika_exercise_tracker_character_ex_soft.png" width="150"/> |
+| **カプケちゃん** | <img width="150" alt="Image" src="./images/https://github.com/user-attachments/assets/0bcac85b-fa60-4616-ad1c-f98c9a32a438" /> |
+| **ラムネェさん** | <img src="./images/ichika_exercise_tracker_character_ex_ramune.png" width="150"/> |
 
 ---
