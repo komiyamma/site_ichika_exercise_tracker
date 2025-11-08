@@ -73,7 +73,7 @@
 | **ベリノアージュ** | <img src="./images/ichika_exercise_tracker_character_ex_berynoage.png" width="150"/> |
 | **ストロベリーヌ** | <img src="./images/ichika_exercise_tracker_character_ex_stroberine.png" width="150"/> |
 | **ソフトちゃん** | <img src="./images/ichika_exercise_tracker_character_ex_soft.png" width="150"/> |
-| **カプケちゃん** | <img width="150" alt="Image" src="./images/https://github.com/user-attachments/assets/0bcac85b-fa60-4616-ad1c-f98c9a32a438" /> |
+| **カプケちゃん** | <img width="150" alt="Image" src="https://github.com/user-attachments/assets/0bcac85b-fa60-4616-ad1c-f98c9a32a438" /> |
 | **ラムネェさん** | <img src="./images/ichika_exercise_tracker_character_ex_ramune.png" width="150"/> |
 
 ---
