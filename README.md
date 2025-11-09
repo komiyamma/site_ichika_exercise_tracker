@@ -57,16 +57,11 @@
 
 学習の旅をサポートしてくれる、個性豊かなキャラクターたちを紹介します！
 
-### 味方キャラクター
-| キャラクター | 画像 |
-| :--- | :---: |
-| **メモリナ姉さん** | <img src="./images/ichika_exercise_tracker_character_memorina.png" width="150"/> |
 
 ### 敵役キャラクター
 | キャラクター | 画像 |
 | :--- | :---: |
 | **ソフトちゃん** | <img src="./images/ichika_exercise_tracker_character_ex_soft.png" width="150"/> |
-| **カプケちゃん** | <img width="150" src="./images/ichika_exercise_tracker_character_ex_capke.png" /> |
 | **ラムネェさん** | <img src="./images/ichika_exercise_tracker_character_ex_ramune.png" width="150"/> |
 
 ---
