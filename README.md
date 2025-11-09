@@ -1,6 +1,7 @@
 # 💖 毎日の運動トラッカーで学ぶ、はじめてのWebアプリ開発 💖
 
-こんにちは！ このリポジトリは、JavaScriptと`localStorage`だけで作ったシンプルなWebアプリ「毎日の運動トラッカー」を使って、フロントエンド開発の基本を楽しく学ぶための教材です。
+こんにちは！ このリポジトリは、JavaScriptと`localStorage`だけで作ったシンプルなWebアプリ「毎日の運動トラッカー」の作成を通して、
+「開発者の心の軌跡」をたどりながら、Webアプリ制作に必要な「作成法」を習得できるように構成されています。
 
 プログラミングに初めて挑戦する方や、HTML/CSS/JavaScriptの基本を復習したい初心者向けて、キャラクターたちと一緒に学べるストーリー仕立ての解説（`D00.md`～`D13.md`）を用意しています。
 
@@ -59,19 +60,12 @@
 ### 味方キャラクター
 | キャラクター | 画像 |
 | :--- | :---: |
-| **なわりん** | <img src="./images/ichika_exercise_tracker_character_nawarin.png" width="150"/> |
-| **カレダ姉さん** | <img src="./images/ichika_exercise_tracker_character_caleda.png" width="150"/> |
 | **メモリナ姉さん** | <img src="./images/ichika_exercise_tracker_character_memorina.png" width="150"/> |
-| **紙ロールちゃん** | <img src="./images/ichika_exercise_tracker_character_kami_roll.png" width="150"/> |
-| **りんりん** | <img src="./images/ichika_exercise_tracker_character_rinrin.png" width="150"/> |
 | **スニッキー** | <img src="./images/ichika_exercise_tracker_character_snikky.png" width="150"/> |
-| **パレティーナ** | <img src="./images/ichika_exercise_tracker_character_palettina.png" width="150"/> |
 
 ### 敵役キャラクター
 | キャラクター | 画像 |
 | :--- | :---: |
-| **ベリノアージュ** | <img src="./images/ichika_exercise_tracker_character_ex_berynoage.png" width="150"/> |
-| **ストロベリーヌ** | <img src="./images/ichika_exercise_tracker_character_ex_stroberine.png" width="150"/> |
 | **ソフトちゃん** | <img src="./images/ichika_exercise_tracker_character_ex_soft.png" width="150"/> |
 | **カプケちゃん** | <img width="150" src="./images/ichika_exercise_tracker_character_ex_capke.png" /> |
 | **ラムネェさん** | <img src="./images/ichika_exercise_tracker_character_ex_ramune.png" width="150"/> |
