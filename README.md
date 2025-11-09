@@ -61,7 +61,6 @@
 | キャラクター | 画像 |
 | :--- | :---: |
 | **メモリナ姉さん** | <img src="./images/ichika_exercise_tracker_character_memorina.png" width="150"/> |
-| **スニッキー** | <img src="./images/ichika_exercise_tracker_character_snikky.png" width="150"/> |
 
 ### 敵役キャラクター
 | キャラクター | 画像 |
