@@ -46,22 +46,3 @@
 
 <h1><a href="D00.md">Day0 からスタート</a></h1>
 
-<br>
-<br>
-<br>
-<br>
-<br>
-
-
-## 🎨 この教材をナビゲートしてくれるキャラクターたち
-
-学習の旅をサポートしてくれる、個性豊かなキャラクターたちを紹介します！
-
-
-### 敵役キャラクター
-| キャラクター | 画像 |
-| :--- | :---: |
-| **ソフトちゃん** | <img src="./images/ichika_exercise_tracker_character_ex_soft.png" width="150"/> |
-| **ラムネェさん** | <img src="./images/ichika_exercise_tracker_character_ex_ramune.png" width="150"/> |
-
----
