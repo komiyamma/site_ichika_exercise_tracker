@@ -1,5 +1,3 @@
-import { getTodayFormatted } from '../utils/dateUtils.js';
-
 /**
  * 運動記録のコントローラー（プレゼンテーション層）
  */
@@ -10,11 +8,23 @@ export class WorkoutController {
   }
 
   /**
+   * 今日の日付をYYYY-MM-DD形式で取得
+   * @returns {string}
+   */
+  #getTodayFormatted() {
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = String(today.getMonth() + 1).padStart(2, '0');
+    const day = String(today.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
+  }
+
+  /**
    * 初期化
    */
   initialize() {
     this.#setupEventHandlers();
-    this.view.setDateInput(getTodayFormatted());
+    this.view.setDateInput(this.#getTodayFormatted());
     this.#renderEntries();
   }
 
@@ -40,7 +50,7 @@ export class WorkoutController {
       this.service.addEntry(formData);
 
       this.view.resetForm();
-      this.view.setDateInput(getTodayFormatted());
+      this.view.setDateInput(this.#getTodayFormatted());
       this.#renderEntries();
     } catch (error) {
       this.view.showError(error.message);
