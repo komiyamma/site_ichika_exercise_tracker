@@ -14,52 +14,6 @@
 
 ## 🔴 重大な問題（学習の妨げになる可能性が高い）
 
-### 1. D03とscript.jsの`sort`と`toSorted`の不一致
-
-**問題の詳細：**
-- D03.mdでは`toSorted()`を使った並び替えを教えている
-- しかし完成版のscript.jsでは`sort()`を使用している
-- 学習者は「どちらを使うべきか」で混乱する
-
-**該当箇所：**
-```javascript
-// D03.mdのコード例
-const sortedEntries = tableEntries.toSorted((a, b) => b.createdAt - a.createdAt);
-
-// script.jsの実装
-filteredEntries.sort((a, b) => b.createdAt - a.createdAt);
-```
-
-**学習者への影響：**
-- 「教材通りに書いたのに完成版と違う」という混乱
-- `sort`と`toSorted`の違いを理解する機会を逃す
-- 元の配列を変更するかどうかの重要な概念が学べない
-
-**改善提案：**
-1. D03.mdで両方の違いを説明する
-2. script.jsを`toSorted`に統一する（推奨）
-3. または、なぜ`sort`を使っているのか理由を明記する
-
-```markdown
-### 📝 sortとtoSortedの違い
-
-配列を並び替えるには2つの方法があります：
-
-**sort()** - 元の配列を直接変更する
-```javascript
-const entries = [3, 1, 2];
-entries.sort(); // entries自体が [1, 2, 3] に変わる
-```
-
-**toSorted()** - 新しい配列を返す（元の配列は変更しない）
-```javascript
-const entries = [3, 1, 2];
-const sorted = entries.toSorted(); // sortedは [1, 2, 3]、entriesは [3, 1, 2] のまま
-```
-
-今回は元の配列を変更しても問題ないので`sort()`を使っていますが、
-元のデータを保持したい場合は`toSorted()`を使いましょう。
-```
 
 ### 2. D13での急激な概念の増加
 
@@ -164,45 +118,6 @@ D13に「手動テストチェックリスト」を追加：
 
 ## 🟢 軽微な問題（あると良い改善）
 
-### 7. 関数の呼び出し関係が見えにくい
-
-**問題の詳細：**
-- 各Dayで部分的なフロー図はあるが、全体像が見えない
-- 関数が増えてくると、どの関数がどの関数を呼んでいるか分かりにくい
-
-**改善提案：**
-D13に全体のフロー図を追加：
-
-```markdown
-### 🗺️ アプリ全体の関数呼び出しマップ
-
-```mermaid
-graph TD
-    A[ページ読み込み] --> B[initializePage]
-    B --> C[assignElementReferences]
-    B --> D[attachEventListeners]
-    B --> E[renderEntryTable]
-    
-    F[フォーム送信] --> G[handleFormSubmit]
-    G --> H[generateEntryId]
-    G --> I[loadEntriesFromStorage]
-    G --> J[saveEntriesToStorage]
-    G --> E
-    
-    K[削除ボタンクリック] --> L[removeButtonClick]
-    L --> M[removeEntryById]
-    M --> I
-    M --> J
-    M --> E
-    
-    N[フィルター変更] --> E
-    O[フィルター解除] --> P[handleFilterClearButtonClick]
-    P --> E
-```
-
-この図を見ると、`renderEntryTable`が中心的な役割を
-果たしていることが分かりますね。
-```
 
 ### 8. Bootstrap導入のタイミングに関する説明不足
 
