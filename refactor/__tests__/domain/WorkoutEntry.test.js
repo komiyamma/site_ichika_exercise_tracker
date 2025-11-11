@@ -88,6 +88,7 @@ describe('WorkoutEntry', () => {
         value: 100,
         note: 'ベンチプレス',
         createdAt: 1705737600000,
+        version: 1,
       };
 
       const entry = new WorkoutEntry(data);
@@ -115,7 +116,22 @@ describe('WorkoutEntry', () => {
         value: 0,
         note: '',
         createdAt: 1705305600000,
+        version: 1,
       });
+    });
+
+    it('versionプロパティを含む', () => {
+      const entry = new WorkoutEntry({
+        id: 'test-id',
+        date: '2025-01-15',
+        type: 'ランニング',
+        createdAt: Date.now(),
+      });
+
+      const plain = entry.toPlainObject();
+
+      expect(plain.version).toBe(1);
+      expect(plain).toHaveProperty('version');
     });
   });
 
@@ -158,6 +174,59 @@ describe('WorkoutEntry', () => {
       const restored = WorkoutEntry.fromJSON(plain);
 
       expect(restored.toPlainObject()).toEqual(original.toPlainObject());
+    });
+
+    it('versionプロパティを持つデータから復元できる', () => {
+      const json = {
+        id: 'test-id',
+        date: '2025-01-15',
+        type: 'ランニング',
+        minutes: 30,
+        value: 5,
+        note: 'テスト',
+        createdAt: Date.now(),
+        version: 1,
+      };
+
+      const entry = WorkoutEntry.fromJSON(json);
+
+      expect(entry.version).toBe(1);
+      expect(entry).toBeInstanceOf(WorkoutEntry);
+    });
+
+    it('versionプロパティが無いデータも復元できる（後方互換性）', () => {
+      const json = {
+        id: 'test-id',
+        date: '2025-01-15',
+        type: 'ランニング',
+        minutes: 30,
+        value: 5,
+        note: 'テスト',
+        createdAt: Date.now(),
+        // version プロパティなし
+      };
+
+      const entry = WorkoutEntry.fromJSON(json);
+
+      expect(entry.version).toBe(1);
+      expect(entry).toBeInstanceOf(WorkoutEntry);
+    });
+
+    it('versionがnullの場合もデフォルト値が設定される', () => {
+      const json = {
+        id: 'test-id',
+        date: '2025-01-15',
+        type: 'ランニング',
+        minutes: 30,
+        value: 5,
+        note: 'テスト',
+        createdAt: Date.now(),
+        version: null,
+      };
+
+      const entry = WorkoutEntry.fromJSON(json);
+
+      expect(entry.version).toBe(1);
     });
   });
 
@@ -476,6 +545,56 @@ describe('WorkoutEntry', () => {
       plain.note = '変更後';
 
       expect(entry.note).toBe('オリジナル');
+    });
+  });
+
+  describe('version管理', () => {
+    it('新規作成時にCURRENT_VERSIONが設定される', () => {
+      const entry = new WorkoutEntry({
+        id: 'test-id',
+        date: '2025-01-15',
+        type: 'ランニング',
+        createdAt: Date.now(),
+      });
+
+      expect(entry.version).toBe(WorkoutEntry.CURRENT_VERSION);
+      expect(entry.version).toBe(1);
+    });
+
+    it('明示的にversionを指定できる', () => {
+      const entry = new WorkoutEntry({
+        id: 'test-id',
+        date: '2025-01-15',
+        type: 'ランニング',
+        createdAt: Date.now(),
+        version: 2,
+      });
+
+      expect(entry.version).toBe(2);
+    });
+
+    it('versionが未指定の場合はCURRENT_VERSIONが使用される', () => {
+      const entry = new WorkoutEntry({
+        id: 'test-id',
+        date: '2025-01-15',
+        type: 'ランニング',
+        createdAt: Date.now(),
+        version: undefined,
+      });
+
+      expect(entry.version).toBe(WorkoutEntry.CURRENT_VERSION);
+    });
+
+    it('versionがnullの場合はCURRENT_VERSIONが使用される', () => {
+      const entry = new WorkoutEntry({
+        id: 'test-id',
+        date: '2025-01-15',
+        type: 'ランニング',
+        createdAt: Date.now(),
+        version: null,
+      });
+
+      expect(entry.version).toBe(WorkoutEntry.CURRENT_VERSION);
     });
   });
 });

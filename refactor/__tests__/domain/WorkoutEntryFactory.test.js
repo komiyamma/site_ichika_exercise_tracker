@@ -513,5 +513,38 @@ describe('WorkoutEntryFactory', () => {
         expect(plain).toHaveProperty('createdAt');
       });
     });
+
+    describe('version管理', () => {
+      it('作成されたエントリにversionが設定される', () => {
+        const formData = {
+          date: '2025-01-15',
+          type: 'ランニング',
+          minutes: '30',
+          value: '5',
+          note: 'テスト',
+        };
+
+        const entry = WorkoutEntryFactory.fromFormData(formData);
+
+        expect(entry.version).toBe(WorkoutEntry.CURRENT_VERSION);
+        expect(entry.version).toBe(1);
+      });
+
+      it('toPlainObject()でversionが含まれる', () => {
+        const formData = {
+          date: '2025-01-15',
+          type: 'ランニング',
+          minutes: '30',
+          value: '5',
+          note: 'テスト',
+        };
+
+        const entry = WorkoutEntryFactory.fromFormData(formData);
+        const plain = entry.toPlainObject();
+
+        expect(plain).toHaveProperty('version');
+        expect(plain.version).toBe(1);
+      });
+    });
   });
 });

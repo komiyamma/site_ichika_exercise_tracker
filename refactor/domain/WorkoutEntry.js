@@ -3,6 +3,9 @@
  * 責務: ビジネスルールとバリデーション
  */
 export class WorkoutEntry {
+  // 現在のデータバージョン
+  static CURRENT_VERSION = 1;
+
   /**
    * @param {Object} data
    * @param {string} data.id
@@ -12,8 +15,9 @@ export class WorkoutEntry {
    * @param {number} data.value
    * @param {string} data.note
    * @param {number} data.createdAt - タイムスタンプ
+   * @param {number} data.version - データバージョン（オプショナル）
    */
-  constructor({ id, date, type, minutes = 0, value = 0, note = '', createdAt }) {
+  constructor({ id, date, type, minutes = 0, value = 0, note = '', createdAt, version }) {
     if (!id || !createdAt) {
       throw new Error('id and createdAt are required');
     }
@@ -25,6 +29,7 @@ export class WorkoutEntry {
     this.value = value;
     this.note = note;
     this.createdAt = createdAt;
+    this.version = version ?? WorkoutEntry.CURRENT_VERSION;
   }
 
   /**
@@ -39,6 +44,7 @@ export class WorkoutEntry {
       value: this.value,
       note: this.note,
       createdAt: this.createdAt,
+      version: this.version,
     };
   }
 
@@ -46,7 +52,10 @@ export class WorkoutEntry {
    * プレーンオブジェクトからインスタンスを復元
    */
   static fromJSON(data) {
-    return new WorkoutEntry(data);
+    return new WorkoutEntry({
+      ...data,
+      version: data.version ?? WorkoutEntry.CURRENT_VERSION,
+    });
   }
 
   /**

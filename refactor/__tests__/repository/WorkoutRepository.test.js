@@ -276,6 +276,7 @@ describe('WorkoutRepository', () => {
         value: 5,
         note: 'テスト',
         createdAt: 1705305600000,
+        version: 1,
       });
     });
 
@@ -623,6 +624,104 @@ describe('WorkoutRepository', () => {
       expect(saved2).toHaveLength(1);
       expect(saved1[0].id).toBe('id-1');
       expect(saved2[0].id).toBe('id-2');
+    });
+  });
+
+  describe('version管理の統合テスト', () => {
+    it('versionを含むデータを保存・読み込みできる', () => {
+      const entry = new WorkoutEntry({
+        id: 'test-id',
+        date: '2025-01-15',
+        type: 'ランニング',
+        minutes: 30,
+        value: 5,
+        note: 'テスト',
+        createdAt: Date.now(),
+      });
+
+      repository.saveAll([entry]);
+      const loaded = repository.findAll();
+
+      expect(loaded[0].version).toBe(1);
+      expect(loaded[0]).toBeInstanceOf(WorkoutEntry);
+    });
+
+    it('versionが無い既存データも読み込める（後方互換性）', () => {
+      // 既存データ（versionなし）を直接LocalStorageに保存
+      const oldData = [{
+        id: 'old-id',
+        date: '2025-01-14',
+        type: 'ウォーキング',
+        minutes: 20,
+        value: 2,
+        note: '',
+        createdAt: Date.now(),
+      }];
+      localStorage.setItem(testStorageKey, JSON.stringify(oldData));
+
+      const loaded = repository.findAll();
+
+      expect(loaded).toHaveLength(1);
+      expect(loaded[0].version).toBe(1);
+      expect(loaded[0].id).toBe('old-id');
+      expect(loaded[0].type).toBe('ウォーキング');
+    });
+
+    it('versionが無いデータを読み込んで再保存するとversionが追加される', () => {
+      // 既存データ（versionなし）を直接LocalStorageに保存
+      const oldData = [{
+        id: 'old-id',
+        date: '2025-01-14',
+        type: 'ウォーキング',
+        minutes: 20,
+        value: 2,
+        note: '',
+        createdAt: 1705219200000,
+      }];
+      localStorage.setItem(testStorageKey, JSON.stringify(oldData));
+
+      // 読み込んで再保存
+      const loaded = repository.findAll();
+      repository.saveAll(loaded);
+
+      // LocalStorageから直接確認
+      const saved = localStorage.getItem(testStorageKey);
+      const parsed = JSON.parse(saved);
+
+      expect(parsed[0]).toHaveProperty('version');
+      expect(parsed[0].version).toBe(1);
+    });
+
+    it('複数の異なるバージョンのデータが混在しても読み込める', () => {
+      const mixedData = [
+        {
+          id: 'old-id',
+          date: '2025-01-14',
+          type: 'ウォーキング',
+          minutes: 20,
+          value: 2,
+          note: '',
+          createdAt: Date.now(),
+          // version なし
+        },
+        {
+          id: 'new-id',
+          date: '2025-01-15',
+          type: 'ランニング',
+          minutes: 30,
+          value: 5,
+          note: '',
+          createdAt: Date.now(),
+          version: 1,
+        },
+      ];
+      localStorage.setItem(testStorageKey, JSON.stringify(mixedData));
+
+      const loaded = repository.findAll();
+
+      expect(loaded).toHaveLength(2);
+      expect(loaded[0].version).toBe(1);
+      expect(loaded[1].version).toBe(1);
     });
   });
 });
