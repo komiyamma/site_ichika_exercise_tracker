@@ -1,4 +1,5 @@
 import { WorkoutEntryFactory } from '../domain/WorkoutEntryFactory.js';
+import { ValidationError } from '../domain/errors/ValidationError.js';
 
 /**
  * 運動記録のビジネスロジック層
@@ -43,7 +44,8 @@ export class WorkoutService {
   /**
    * 新規エントリを追加
    * @param {Object} formData
-   * @throws {Error} バリデーションエラーまたは保存失敗時
+   * @throws {ValidationError} バリデーションエラー時
+   * @throws {RepositoryError} 保存失敗時
    */
   addEntry(formData) {
     // ファクトリーでエントリを生成
@@ -52,7 +54,7 @@ export class WorkoutService {
     // バリデーション
     const validation = entry.validate();
     if (!validation.isValid) {
-      throw new Error(validation.errors.join(', '));
+      throw new ValidationError(validation.errors);
     }
 
     // トランザクション的に保存

@@ -338,10 +338,10 @@ describe('WorkoutView', () => {
   });
 
   describe('エッジケース', () => {
-    it('NotificationServiceなしでも初期化できる', () => {
-      const viewWithoutNotification = new WorkoutView();
-
-      expect(viewWithoutNotification.notification).toBeDefined();
+    it('NotificationServiceが必須である', () => {
+      expect(() => {
+        new WorkoutView();
+      }).toThrow('NotificationService is required');
     });
 
     it('大量のエントリも表示できる', () => {

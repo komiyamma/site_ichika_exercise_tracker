@@ -1,4 +1,6 @@
 import { DateFormatter } from '../domain/DateFormatter.js';
+import { ValidationError } from '../domain/errors/ValidationError.js';
+import { RepositoryError } from '../domain/errors/RepositoryError.js';
 
 /**
  * 運動記録のコントローラー（プレゼンテーション層）
@@ -56,8 +58,15 @@ export class WorkoutController {
       this.view.setDateInput(DateFormatter.today());
       this.#renderEntries();
     } catch (error) {
-      this.view.showError(error.message);
-      console.error('エントリ追加エラー:', error);
+      if (error instanceof ValidationError) {
+        this.view.showError(`入力内容を確認してください: ${error.message}`);
+      } else if (error instanceof RepositoryError) {
+        this.view.showError('データの保存に失敗しました。もう一度お試しください。');
+        console.error('Repository error:', error);
+      } else {
+        this.view.showError('予期しないエラーが発生しました。');
+        console.error('Unexpected error:', error);
+      }
     }
   }
 
@@ -85,8 +94,13 @@ export class WorkoutController {
       this.#renderEntries();
       this.view.showInfo('データを削除しました。');
     } catch (error) {
-      this.view.showError('データの削除に失敗しました');
-      console.error('データ削除エラー:', error);
+      if (error instanceof RepositoryError) {
+        this.view.showError('データの削除に失敗しました');
+        console.error('Repository error:', error);
+      } else {
+        this.view.showError('予期しないエラーが発生しました');
+        console.error('Unexpected error:', error);
+      }
     }
   }
 
@@ -98,8 +112,13 @@ export class WorkoutController {
       this.service.deleteEntry(id);
       this.#renderEntries();
     } catch (error) {
-      this.view.showError('削除に失敗しました');
-      console.error('削除エラー:', error);
+      if (error instanceof RepositoryError) {
+        this.view.showError('削除に失敗しました');
+        console.error('Repository error:', error);
+      } else {
+        this.view.showError('予期しないエラーが発生しました');
+        console.error('Unexpected error:', error);
+      }
     }
   }
 
@@ -112,8 +131,13 @@ export class WorkoutController {
       const entries = this.service.getEntriesByDate(filterDate);
       this.view.renderEntries(entries);
     } catch (error) {
-      this.view.showError('データの取得に失敗しました');
-      console.error('データ取得エラー:', error);
+      if (error instanceof RepositoryError) {
+        this.view.showError('データの取得に失敗しました');
+        console.error('Repository error:', error);
+      } else {
+        this.view.showError('予期しないエラーが発生しました');
+        console.error('Unexpected error:', error);
+      }
     }
   }
 }

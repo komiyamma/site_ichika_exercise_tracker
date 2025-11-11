@@ -11,6 +11,8 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest';
 import { WorkoutController } from '../../controller/WorkoutController.js';
 import { WorkoutEntry } from '../../domain/WorkoutEntry.js';
+import { ValidationError } from '../../domain/errors/ValidationError.js';
+import { RepositoryError } from '../../domain/errors/RepositoryError.js';
 
 // モックService
 class MockService {
@@ -40,7 +42,7 @@ class MockService {
 
     const validation = entry.validate();
     if (!validation.isValid) {
-      throw new Error(validation.errors.join(', '));
+      throw new ValidationError(validation.errors);
     }
 
     this.entries.push(entry);
@@ -447,7 +449,7 @@ describe('WorkoutController', () => {
 
     it('削除時のエラーを適切に処理する', () => {
       mockService.deleteEntry = vi.fn(() => {
-        throw new Error('削除エラー');
+        throw new RepositoryError('削除エラー');
       });
 
       mockView.dispatchEvent(new CustomEvent('delete', {
@@ -460,7 +462,7 @@ describe('WorkoutController', () => {
 
     it('データ取得時のエラーを適切に処理する', () => {
       mockService.getEntriesByDate = vi.fn(() => {
-        throw new Error('データ取得エラー');
+        throw new RepositoryError('データ取得エラー');
       });
 
       mockView.dispatchEvent(new Event('filterChange'));
