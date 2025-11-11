@@ -51,11 +51,13 @@ export class WorkoutEntry {
 
   /**
    * バリデーション
-   * @returns {{isValid: boolean, errors: string[]}}
+   * @returns {{isValid: boolean, errors: string[], warnings: string[]}}
    */
   validate() {
     const errors = [];
+    const warnings = [];
 
+    // 必須項目チェック
     if (!this.type) {
       errors.push('種目は必須です');
     }
@@ -66,6 +68,7 @@ export class WorkoutEntry {
       errors.push('日付の形式が不正です（YYYY-MM-DD）');
     }
 
+    // 数値範囲チェック
     if (this.minutes < 0) {
       errors.push('時間は0以上である必要があります');
     }
@@ -74,9 +77,15 @@ export class WorkoutEntry {
       errors.push('回数/距離は0以上である必要があります');
     }
 
+    // 警告チェック
+    if (this.minutes === 0 && this.value === 0) {
+      warnings.push('時間または回数/距離のいずれかを入力することを推奨します');
+    }
+
     return {
       isValid: errors.length === 0,
       errors,
+      warnings,
     };
   }
 }

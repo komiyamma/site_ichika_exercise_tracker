@@ -1,4 +1,4 @@
-import { WorkoutEntry } from '../domain/WorkoutEntry.js';
+import { WorkoutEntryFactory } from '../domain/WorkoutEntryFactory.js';
 
 /**
  * 運動記録のビジネスロジック層
@@ -46,17 +46,8 @@ export class WorkoutService {
    * @throws {Error} バリデーションエラーまたは保存失敗時
    */
   addEntry(formData) {
-    // フォームデータからドメインモデルを構築
-    const timestamp = Date.now();
-    const entry = new WorkoutEntry({
-      id: String(timestamp),
-      date: formData.date,
-      type: formData.type,
-      minutes: parseInt(formData.minutes, 10) || 0,
-      value: parseInt(formData.value, 10) || 0,
-      note: formData.note.trim(),
-      createdAt: timestamp,
-    });
+    // ファクトリーでエントリを生成
+    const entry = WorkoutEntryFactory.fromFormData(formData);
 
     // バリデーション
     const validation = entry.validate();
@@ -64,10 +55,11 @@ export class WorkoutService {
       throw new Error(validation.errors.join(', '));
     }
 
-    // 保存
-    const entries = this.repository.findAll();
-    entries.push(entry);
-    this.repository.saveAll(entries);
+    // トランザクション的に保存
+    this.repository.transaction((entries) => {
+      entries.push(entry);
+      return entries;
+    });
   }
 
   /**
@@ -78,9 +70,10 @@ export class WorkoutService {
   deleteEntry(id) {
     if (!id) return;
 
-    const entries = this.repository.findAll();
-    const filtered = entries.filter(entry => entry.id !== id);
-    this.repository.saveAll(filtered);
+    // トランザクション的に削除
+    this.repository.transaction((entries) => {
+      return entries.filter(entry => entry.id !== id);
+    });
   }
 
   /**

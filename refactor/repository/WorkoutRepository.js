@@ -22,7 +22,9 @@ export class WorkoutRepository {
       const data = JSON.parse(json);
       return data.map(item => WorkoutEntry.fromJSON(item));
     } catch (error) {
-      throw new Error(`データ読み込み失敗: ${error.message}`);
+      throw new Error(`データ読み込み失敗: ${error.message}`, {
+        cause: error,
+      });
     }
   }
 
@@ -36,8 +38,21 @@ export class WorkoutRepository {
       const data = entries.map(entry => entry.toPlainObject());
       localStorage.setItem(this.storageKey, JSON.stringify(data));
     } catch (error) {
-      throw new Error(`データ保存失敗: ${error.message}`);
+      throw new Error(`データ保存失敗: ${error.message}`, {
+        cause: error,
+      });
     }
+  }
+
+  /**
+   * トランザクション的な操作
+   * @param {Function} callback - (entries) => updatedEntries
+   * @throws {Error} データ操作失敗時
+   */
+  transaction(callback) {
+    const entries = this.findAll();
+    const updatedEntries = callback(entries);
+    this.saveAll(updatedEntries);
   }
 
   /**

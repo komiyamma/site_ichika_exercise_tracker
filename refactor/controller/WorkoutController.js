@@ -23,21 +23,33 @@ export class WorkoutController {
    * イベントハンドラーを設定
    */
   #setupEventHandlers() {
-    this.view.attachEventListeners({
-      onSubmit: () => this.#handleSubmit(),
-      onFilterChange: () => this.#renderEntries(),
-      onClearFilter: () => this.#handleClearFilter(),
-      onDebugClear: () => this.#handleDebugClear(),
-      onDelete: (id) => this.#handleDelete(id),
+    this.view.addEventListener('submit', (e) => {
+      this.#handleSubmit(e.detail);
+    });
+
+    this.view.addEventListener('filterChange', () => {
+      this.#renderEntries();
+    });
+
+    this.view.addEventListener('clearFilter', () => {
+      this.#handleClearFilter();
+    });
+
+    this.view.addEventListener('debugClear', () => {
+      this.#handleDebugClear();
+    });
+
+    this.view.addEventListener('delete', (e) => {
+      this.#handleDelete(e.detail.id);
     });
   }
 
   /**
    * フォーム送信処理
+   * @param {Object} formData
    */
-  #handleSubmit() {
+  #handleSubmit(formData) {
     try {
-      const formData = this.view.getFormData();
       this.service.addEntry(formData);
 
       this.view.resetForm();

@@ -1,9 +1,14 @@
+import { NotificationService } from './NotificationService.js';
+
 /**
  * 運動記録のビュー層（画面表示）
  */
-export class WorkoutView {
-  constructor() {
+export class WorkoutView extends EventTarget {
+  constructor(notificationService = new NotificationService()) {
+    super();
+    this.notification = notificationService;
     this.elements = this.#initializeElements();
+    this.#attachDOMListeners();
   }
 
   /**
@@ -119,79 +124,84 @@ export class WorkoutView {
   #createEntryRow(entry) {
     const row = document.createElement('tr');
 
-    // 日付
-    const dateCell = document.createElement('td');
-    dateCell.textContent = entry.date;
-    row.appendChild(dateCell);
+    // データセルの定義
+    const cells = [
+      { text: entry.date },
+      { text: entry.type },
+      { text: entry.minutes || '', className: 'text-end' },
+      { text: entry.value || '', className: 'text-end' },
+      { text: entry.note || '' },
+    ];
 
-    // 種目
-    const typeCell = document.createElement('td');
-    typeCell.textContent = entry.type;
-    row.appendChild(typeCell);
+    // セルを一括生成
+    cells.forEach(({ text, className }) => {
+      const cell = document.createElement('td');
+      cell.textContent = text;
+      if (className) cell.className = className;
+      row.appendChild(cell);
+    });
 
-    // 時間
-    const minutesCell = document.createElement('td');
-    minutesCell.className = 'text-end';
-    minutesCell.textContent = entry.minutes || '';
-    row.appendChild(minutesCell);
-
-    // 回数/距離
-    const valueCell = document.createElement('td');
-    valueCell.className = 'text-end';
-    valueCell.textContent = entry.value || '';
-    row.appendChild(valueCell);
-
-    // メモ
-    const noteCell = document.createElement('td');
-    noteCell.textContent = entry.note || '';
-    row.appendChild(noteCell);
-
-    // 削除ボタン
-    const actionCell = document.createElement('td');
-    actionCell.className = 'text-end';
-    const deleteButton = document.createElement('button');
-    deleteButton.className = 'btn btn-sm btn-outline-danger';
-    deleteButton.dataset.id = entry.id;
-    deleteButton.dataset.action = 'delete';
-    deleteButton.textContent = 'Delete';
-    actionCell.appendChild(deleteButton);
-    row.appendChild(actionCell);
+    // アクションセル（削除ボタン）
+    row.appendChild(this.#createActionCell(entry.id));
 
     return row;
   }
 
   /**
-   * イベントリスナーを登録
-   * @param {Object} handlers
+   * アクションセル（削除ボタン）を生成
+   * @param {string} id
+   * @returns {HTMLTableCellElement}
    */
-  attachEventListeners(handlers) {
+  #createActionCell(id) {
+    const cell = document.createElement('td');
+    cell.className = 'text-end';
+
+    const button = document.createElement('button');
+    button.className = 'btn btn-sm btn-outline-danger';
+    button.dataset.id = id;
+    button.dataset.action = 'delete';
+    button.textContent = 'Delete';
+
+    cell.appendChild(button);
+    return cell;
+  }
+
+  /**
+   * DOMイベントリスナーを登録（内部用）
+   */
+  #attachDOMListeners() {
     // フォーム送信
     this.elements.form.addEventListener('submit', (e) => {
       e.preventDefault();
-      handlers.onSubmit?.();
+      this.dispatchEvent(new CustomEvent('submit', {
+        detail: this.getFormData(),
+      }));
     });
 
     // フィルター変更
     this.elements.filterDate.addEventListener('change', () => {
-      handlers.onFilterChange?.();
+      this.dispatchEvent(new CustomEvent('filterChange', {
+        detail: this.getFilterDate(),
+      }));
     });
 
     // フィルタークリア
     this.elements.clearFilter.addEventListener('click', () => {
-      handlers.onClearFilter?.();
+      this.dispatchEvent(new Event('clearFilter'));
     });
 
     // デバッグ：全削除
     this.elements.debugClear.addEventListener('click', () => {
-      handlers.onDebugClear?.();
+      this.dispatchEvent(new Event('debugClear'));
     });
 
     // 削除ボタン（イベント委譲）
     this.elements.list.addEventListener('click', (e) => {
       const button = e.target.closest('[data-action="delete"]');
       if (button) {
-        const id = button.dataset.id;
-        handlers.onDelete?.(id);
+        this.dispatchEvent(new CustomEvent('delete', {
+          detail: { id: button.dataset.id },
+        }));
       }
     });
   }
@@ -201,7 +211,7 @@ export class WorkoutView {
    * @param {string} message
    */
   showError(message) {
-    alert(message);
+    this.notification.showError(message);
   }
 
   /**
@@ -210,7 +220,7 @@ export class WorkoutView {
    * @returns {boolean}
    */
   confirm(message) {
-    return window.confirm(message);
+    return this.notification.confirm(message);
   }
 
   /**
@@ -218,6 +228,6 @@ export class WorkoutView {
    * @param {string} message
    */
   showInfo(message) {
-    alert(message);
+    this.notification.showInfo(message);
   }
 }
