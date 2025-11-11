@@ -60,7 +60,8 @@ refactor/
 // app.jsでの依存性の注入
 const repository = new WorkoutRepository();
 const service = new WorkoutService(repository);
-const view = new WorkoutView();
+const notificationService = new NotificationService();
+const view = new WorkoutView(notificationService);
 const controller = new WorkoutController(service, view);
 ```
 
@@ -68,6 +69,7 @@ const controller = new WorkoutController(service, view);
 - テストが容易
 - 実装の差し替えが可能
 - 疎結合な設計
+- 依存関係が明示的
 
 ### 3. 単一責任の原則（Single Responsibility Principle）
 
