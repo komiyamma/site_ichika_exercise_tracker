@@ -197,6 +197,90 @@ addEntry(formData) {
 | 配列操作 | `sort()` | `toSorted()` |
 | エラー処理 | try-catch分散 | 各層で適切に処理 |
 
+## データバージョン管理
+
+### 概要
+
+LocalStorageに保存されるデータには `version` プロパティが含まれ、将来のデータ構造変更時に安全なマイグレーションが可能です。
+
+### 現在のバージョン
+
+```javascript
+// WorkoutEntry.js
+export class WorkoutEntry {
+  static CURRENT_VERSION = 1;  // 現在のデータバージョン
+  
+  constructor({ id, date, type, minutes = 0, value = 0, note = '', createdAt, version }) {
+    // ...
+    this.version = version ?? WorkoutEntry.CURRENT_VERSION;
+  }
+}
+```
+
+### データ構造（バージョン1）
+
+```json
+{
+  "id": "550e8400-e29b-41d4-a716-446655440000",
+  "date": "2025-01-15",
+  "type": "ランニング",
+  "minutes": 30,
+  "value": 5,
+  "note": "朝ラン",
+  "createdAt": 1705305600000,
+  "version": 1
+}
+```
+
+### 後方互換性
+
+既存データ（`version` プロパティなし）も自動的にバージョン1として扱われます：
+
+```javascript
+// 既存データ（versionなし）
+const oldData = {
+  id: "old-id",
+  date: "2025-01-14",
+  type: "ウォーキング",
+  minutes: 20,
+  value: 2,
+  note: "",
+  createdAt: 1705219200000
+  // version プロパティなし
+};
+
+// fromJSON()で読み込むと自動的にversion: 1が設定される
+const entry = WorkoutEntry.fromJSON(oldData);
+console.log(entry.version); // 1
+```
+
+### 将来のマイグレーション例
+
+将来、データ構造を変更する場合の実装例：
+
+```javascript
+// バージョン2への移行例（将来の実装）
+export class WorkoutEntry {
+  static CURRENT_VERSION = 2;  // バージョンアップ
+  
+  static fromJSON(data) {
+    // バージョン1のデータをバージョン2に変換
+    if (data.version === 1) {
+      return new WorkoutEntry({
+        ...data,
+        duration: data.minutes,  // 新プロパティに移行
+        version: 2,
+      });
+    }
+    
+    return new WorkoutEntry({
+      ...data,
+      version: data.version ?? WorkoutEntry.CURRENT_VERSION,
+    });
+  }
+}
+```
+
 ## 使用技術
 
 - **ES2025 JavaScript**
