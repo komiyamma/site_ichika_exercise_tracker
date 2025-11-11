@@ -1,6 +1,7 @@
 import { WorkoutRepository } from './repository/WorkoutRepository.js';
 import { WorkoutService } from './service/WorkoutService.js';
 import { WorkoutView } from './view/WorkoutView.js';
+import { NotificationService } from './view/NotificationService.js';
 import { WorkoutController } from './controller/WorkoutController.js';
 
 /**
@@ -11,7 +12,8 @@ function initializeApp() {
   // 依存性の注入
   const repository = new WorkoutRepository();
   const service = new WorkoutService(repository);
-  const view = new WorkoutView();
+  const notificationService = new NotificationService();
+  const view = new WorkoutView(notificationService);
   const controller = new WorkoutController(service, view);
 
   // アプリケーション起動

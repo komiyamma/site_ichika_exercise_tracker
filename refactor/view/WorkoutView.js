@@ -1,10 +1,11 @@
-import { NotificationService } from './NotificationService.js';
-
 /**
  * 運動記録のビュー層（画面表示）
  */
 export class WorkoutView extends EventTarget {
-  constructor(notificationService = new NotificationService()) {
+  constructor(notificationService) {
+    if (!notificationService) {
+      throw new Error('NotificationService is required');
+    }
     super();
     this.notification = notificationService;
     this.elements = this.#initializeElements();
