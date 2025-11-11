@@ -84,8 +84,9 @@ describe('WorkoutService', () => {
       const entries = service.getAllEntries();
 
       expect(entries).toHaveLength(2);
-      expect(entries[0].id).toBe('id-1');
-      expect(entries[1].id).toBe('id-2');
+      // createdAtの新しい順でソートされるため、id-2が先
+      expect(entries[0].id).toBe('id-2');
+      expect(entries[1].id).toBe('id-1');
     });
 
     it('createdAtの新しい順でソートされる', () => {

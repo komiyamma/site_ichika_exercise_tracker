@@ -281,8 +281,8 @@ describe('WorkoutRepository', () => {
 
     it('localStorageの容量制限を超えた場合はエラーをスローする', () => {
       // localStorageの容量制限をシミュレート
-      const originalSetItem = Storage.prototype.setItem;
-      Storage.prototype.setItem = vi.fn(() => {
+      const originalSetItem = localStorage.setItem;
+      localStorage.setItem = vi.fn(() => {
         throw new Error('QuotaExceededError');
       });
 
@@ -302,7 +302,7 @@ describe('WorkoutRepository', () => {
         repository.saveAll(entries);
       }).toThrow('データ保存失敗');
 
-      Storage.prototype.setItem = originalSetItem;
+      localStorage.setItem = originalSetItem;
     });
 
     it('大量のエントリも保存できる', () => {

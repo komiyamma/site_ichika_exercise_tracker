@@ -388,8 +388,8 @@ describe('WorkoutEntryFactory', () => {
 
         const entry = WorkoutEntryFactory.fromFormData(formData);
 
-        // trim()は全角スペースをトリムしないため、そのまま残る
-        expect(entry.note).toBe('　朝ラン　');
+        // JavaScriptのtrim()は全角スペースもトリムする
+        expect(entry.note).toBe('朝ラン');
       });
 
       it('長いメモも正しく処理される', () => {
