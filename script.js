@@ -210,7 +210,7 @@ function renderEntryTable() {
 
 /**
  * ローカルストレージからすべての運動記録エントリを読み込みます。
- * @returns {ExerciseEntry[]} 読み込んだ運動記録エントリの配列。ストレージに何もない場合や、データの読み込みに失敗した場合は空の配列。
+ * @returns {WorkoutEntry[]} 読み込んだ運動記録エントリの配列。ストレージに何もない場合や、データの読み込みに失敗した場合は空の配列。
  */
 function loadEntriesFromStorage() {
     try {
@@ -224,7 +224,7 @@ function loadEntriesFromStorage() {
 
 /**
  * 指定された運動記録エントリの配列をローカルストレージに保存します。
- * @param {ExerciseEntry[]} entries - 保存する運動記録エントリの配列。
+ * @param {WorkoutEntry[]} entries - 保存する運動記録エントリの配列。
  */
 function saveEntriesToStorage(entries) {
     try {
