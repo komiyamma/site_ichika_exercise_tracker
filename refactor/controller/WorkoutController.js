@@ -1,5 +1,8 @@
+import { DateFormatter } from '../domain/DateFormatter.js';
+
 /**
  * 運動記録のコントローラー（プレゼンテーション層）
+ * 責務: ユーザー操作の制御とエラーハンドリング
  */
 export class WorkoutController {
   constructor(service, view) {
@@ -8,23 +11,11 @@ export class WorkoutController {
   }
 
   /**
-   * 今日の日付をYYYY-MM-DD形式で取得
-   * @returns {string}
-   */
-  #getTodayFormatted() {
-    const today = new Date();
-    const year = today.getFullYear();
-    const month = String(today.getMonth() + 1).padStart(2, '0');
-    const day = String(today.getDate()).padStart(2, '0');
-    return `${year}-${month}-${day}`;
-  }
-
-  /**
    * 初期化
    */
   initialize() {
     this.#setupEventHandlers();
-    this.view.setDateInput(this.#getTodayFormatted());
+    this.view.setDateInput(DateFormatter.today());
     this.#renderEntries();
   }
 
@@ -50,10 +41,11 @@ export class WorkoutController {
       this.service.addEntry(formData);
 
       this.view.resetForm();
-      this.view.setDateInput(this.#getTodayFormatted());
+      this.view.setDateInput(DateFormatter.today());
       this.#renderEntries();
     } catch (error) {
       this.view.showError(error.message);
+      console.error('エントリ追加エラー:', error);
     }
   }
 
@@ -75,26 +67,41 @@ export class WorkoutController {
 
     if (!confirmed) return;
 
-    this.service.clearAllData();
-    this.view.clearFilter();
-    this.#renderEntries();
-    this.view.showInfo('データを削除しました。');
+    try {
+      this.service.clearAllData();
+      this.view.clearFilter();
+      this.#renderEntries();
+      this.view.showInfo('データを削除しました。');
+    } catch (error) {
+      this.view.showError('データの削除に失敗しました');
+      console.error('データ削除エラー:', error);
+    }
   }
 
   /**
    * 削除処理
    */
   #handleDelete(id) {
-    this.service.deleteEntry(id);
-    this.#renderEntries();
+    try {
+      this.service.deleteEntry(id);
+      this.#renderEntries();
+    } catch (error) {
+      this.view.showError('削除に失敗しました');
+      console.error('削除エラー:', error);
+    }
   }
 
   /**
    * エントリ一覧を描画
    */
   #renderEntries() {
-    const filterDate = this.view.getFilterDate();
-    const entries = this.service.getEntriesByDate(filterDate);
-    this.view.renderEntries(entries);
+    try {
+      const filterDate = this.view.getFilterDate();
+      const entries = this.service.getEntriesByDate(filterDate);
+      this.view.renderEntries(entries);
+    } catch (error) {
+      this.view.showError('データの取得に失敗しました');
+      console.error('データ取得エラー:', error);
+    }
   }
 }

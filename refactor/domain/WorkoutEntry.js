@@ -1,5 +1,6 @@
 /**
  * 運動記録エントリのドメインモデル
+ * 責務: ビジネスルールとバリデーション
  */
 export class WorkoutEntry {
   /**
@@ -13,6 +14,10 @@ export class WorkoutEntry {
    * @param {number} data.createdAt - タイムスタンプ
    */
   constructor({ id, date, type, minutes = 0, value = 0, note = '', createdAt }) {
+    if (!id || !createdAt) {
+      throw new Error('id and createdAt are required');
+    }
+
     this.id = id;
     this.date = date;
     this.type = type;
@@ -23,25 +28,9 @@ export class WorkoutEntry {
   }
 
   /**
-   * フォームデータから新規エントリを作成
-   */
-  static createFromForm({ date, type, minutes, value, note }) {
-    const timestamp = Date.now();
-    return new WorkoutEntry({
-      id: String(timestamp),
-      date,
-      type,
-      minutes: parseInt(minutes, 10) || 0,
-      value: parseInt(value, 10) || 0,
-      note: note.trim(),
-      createdAt: timestamp,
-    });
-  }
-
-  /**
    * プレーンオブジェクトに変換
    */
-  toJSON() {
+  toPlainObject() {
     return {
       id: this.id,
       date: this.date,
@@ -62,8 +51,32 @@ export class WorkoutEntry {
 
   /**
    * バリデーション
+   * @returns {{isValid: boolean, errors: string[]}}
    */
-  isValid() {
-    return Boolean(this.type && this.date);
+  validate() {
+    const errors = [];
+
+    if (!this.type) {
+      errors.push('種目は必須です');
+    }
+
+    if (!this.date) {
+      errors.push('日付は必須です');
+    } else if (!/^\d{4}-\d{2}-\d{2}$/.test(this.date)) {
+      errors.push('日付の形式が不正です（YYYY-MM-DD）');
+    }
+
+    if (this.minutes < 0) {
+      errors.push('時間は0以上である必要があります');
+    }
+
+    if (this.value < 0) {
+      errors.push('回数/距離は0以上である必要があります');
+    }
+
+    return {
+      isValid: errors.length === 0,
+      errors,
+    };
   }
 }
