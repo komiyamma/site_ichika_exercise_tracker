@@ -1,0 +1,28 @@
+{
+  "name": "workout-tracker-refactor",
+  "version": "1.0.0",
+  "description": "運動トラッカー - リファクタリング版（クリーンアーキテクチャ）",
+  "type": "module",
+  "scripts": {
+    "test": "vitest",
+    "test:ui": "vitest --ui",
+    "test:run": "vitest run",
+    "test:coverage": "vitest run --coverage",
+    "test:watch": "vitest watch"
+  },
+  "keywords": [
+    "workout",
+    "tracker",
+    "clean-architecture",
+    "es2025",
+    "javascript"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@vitest/ui": "^1.0.0",
+    "@vitest/coverage-v8": "^1.0.0",
+    "jsdom": "^23.0.0",
+    "vitest": "^1.0.0"
+  }
+}
