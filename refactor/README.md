@@ -212,21 +212,9 @@ addEntry(formData) {
 
 ## 実行方法
 
-1. ローカルサーバーを起動（ES6 modulesはfile://では動作しません）
+VSCodeのLive Server拡張機能で`top.html`を開いて起動してください。
 
-```bash
-# Python 3の場合
-python -m http.server 8000
-
-# Node.jsのhttp-serverの場合
-npx http-server
-```
-
-2. ブラウザで開く
-
-```
-http://localhost:8000/refactor/top.html
-```
+（ES6 modulesは`file://`プロトコルでは動作しないため、ローカルサーバーが必要です）
 
 ## テスト戦略
 
