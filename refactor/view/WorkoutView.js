@@ -1,5 +1,3 @@
-import { escapeHtml } from '../utils/htmlUtils.js';
-
 /**
  * 運動記録のビュー層（画面表示）
  */
