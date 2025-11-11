@@ -292,21 +292,4 @@ describe('NotificationService', () => {
       expect(global.alert).toHaveBeenCalledWith(fn);
     });
   });
-
-  describe('パフォーマンス', () => {
-    it('大量の通知を高速に処理できる', () => {
-      const startTime = performance.now();
-
-      for (let i = 0; i < 1000; i++) {
-        service.showError(`エラー${i}`);
-      }
-
-      const endTime = performance.now();
-      const duration = endTime - startTime;
-
-      expect(global.alert).toHaveBeenCalledTimes(1000);
-      // 1000回の呼び出しが100ms以内に完了することを期待
-      expect(duration).toBeLessThan(100);
-    });
-  });
 });

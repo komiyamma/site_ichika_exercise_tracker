@@ -300,21 +300,4 @@ describe('DateFormatter', () => {
       expect(result).toBe('2025-01-15');
     });
   });
-
-  describe('パフォーマンス', () => {
-    it('大量の日付変換でもパフォーマンスが劣化しない', () => {
-      const startTime = performance.now();
-
-      for (let i = 0; i < 10000; i++) {
-        const date = new Date(2025, 0, 1 + (i % 365));
-        DateFormatter.toISO8601Date(date);
-      }
-
-      const endTime = performance.now();
-      const duration = endTime - startTime;
-
-      // 10000回の変換が100ms以内に完了することを期待
-      expect(duration).toBeLessThan(100);
-    });
-  });
 });

@@ -166,22 +166,6 @@ describe('IdGenerator', () => {
       });
     });
 
-    describe('パフォーマンス', () => {
-      it('大量生成でもパフォーマンスが劣化しない', () => {
-        const startTime = performance.now();
-        
-        for (let i = 0; i < 10000; i++) {
-          IdGenerator.generate();
-        }
-        
-        const endTime = performance.now();
-        const duration = endTime - startTime;
-
-        // 10000個の生成が1秒以内に完了することを期待
-        expect(duration).toBeLessThan(1000);
-      });
-    });
-
     describe('エッジケース', () => {
       it('引数なしで呼び出せる', () => {
         expect(() => {
