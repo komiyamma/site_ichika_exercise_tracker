@@ -99,7 +99,7 @@ function handleFormSubmit(event) {
 
     /** @type {WorkoutEntry} */
     const entry = {
-        id: String(timestamp),
+        id: `${timestamp}-${crypto.randomUUID()}`,
         date: dateInputElement.value,
         type: typeInputElement.value,
         minutes: parseInt(minutesInputElement.value, 10) || 0,
