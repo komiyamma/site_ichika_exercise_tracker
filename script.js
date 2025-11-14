@@ -192,8 +192,8 @@ function renderEntryTable() {
             `<tr>
                 <td>${escapeHtml(date)}</td>
                 <td>${escapeHtml(type)}</td>
-                <td class="text-end">${escapeHtml(minutes || '')}</td>
-                <td class="text-end">${escapeHtml(value || '')}</td>
+                <td class="text-center">${escapeHtml(minutes || '')}</td>
+                <td class="text-center">${escapeHtml(value || '')}</td>
                 <td>${escapeHtml(note || '')}</td>
                 <td class="text-end">
                     <button class="delete-button btn btn-sm btn-outline-danger" onclick="removeButtonClick('${id}')">Delete</button>
