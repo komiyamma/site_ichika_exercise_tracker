@@ -18,7 +18,7 @@
 
 ### 2. Bootstrap版 (`index.bootstrap.html`)
 
-- **URL:** [https://komiyamma.github.io/site_ichika_exercise_tracker/index.bootstrap.html?v=2](https://komiyamma.github.io/site_ichika_exercise_tracker/index.bootstrap.html)
+- **URL:** [https://komiyamma.github.io/site_ichika_exercise_tracker/index.bootstrap.html?v=2](https://komiyamma.github.io/site_ichika_exercise_tracker/index.bootstrap.html?v=2)
 - **特徴:** 見た目を整えるための人気CSSフレームワーク [Bootstrap](https://getbootstrap.jp/) を使っています。モダンなWebサイトがどのように作られているのか、ライブラリを使うとどれだけ効率的に開発できるのかを体験できます。
 
 <img src="./images/ichika_exercise_tracker_index_bootstrap.png" width="800"/>
