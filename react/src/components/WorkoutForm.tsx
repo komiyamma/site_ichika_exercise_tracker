@@ -66,7 +66,7 @@ function WorkoutForm({ onAddEntry }: WorkoutFormProps) {
     
     // WorkoutEntry型のオブジェクトを作成
     const entry: WorkoutEntry = {
-      id: String(timestamp),                          // タイムスタンプを文字列化してIDとする
+      id: `${timestamp}-${crypto.randomUUID()}`,      // タイムスタンプ-UUIDを文字列化してIDとする 
       date: formData.date,
       type: formData.type,
       minutes: parseInt(formData.minutes, 10) || 0,   // 空文字列の場合は0
