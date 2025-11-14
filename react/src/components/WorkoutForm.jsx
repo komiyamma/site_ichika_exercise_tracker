@@ -3,16 +3,16 @@ import PropTypes from 'prop-types';
 import { getTodayString } from '../date/formatter';
 import { WORKOUT_TYPES } from '../constants/workoutTypes';
 
-const INITIAL_FORM_STATE = {
+const getInitialFormState = () => ({
   type: '',
   date: getTodayString(),
   minutes: '',
   value: '',
   note: '',
-};
+});
 
 function WorkoutForm({ onAddEntry }) {
-  const [formData, setFormData] = useState(INITIAL_FORM_STATE);
+  const [formData, setFormData] = useState(getInitialFormState);
 
   const handleChange = useCallback((field) => (e) => {
     setFormData(prev => ({ ...prev, [field]: e.target.value }));
@@ -38,7 +38,7 @@ function WorkoutForm({ onAddEntry }) {
     };
 
     onAddEntry(entry);
-    setFormData({ ...INITIAL_FORM_STATE, date: getTodayString() });
+    setFormData(getInitialFormState());
   }, [formData, onAddEntry]);
 
   const workoutOptions = useMemo(() => (
