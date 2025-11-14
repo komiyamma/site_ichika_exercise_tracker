@@ -1,4 +1,4 @@
-import { STORAGE_KEY } from '../constants/workoutTypes';
+import { STORAGE_KEY } from './constants';
 import type { WorkoutEntry } from '../types/workout';
 
 /**

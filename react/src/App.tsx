@@ -5,7 +5,7 @@ import FilterControls from './components/FilterControls';
 import WorkoutTable from './components/WorkoutTable';
 import DebugControls from './components/DebugControls';
 import { useLocalStorage } from './hooks/useLocalStorage';
-import { STORAGE_KEY } from './constants/workoutTypes';
+import { STORAGE_KEY } from './storage/constants';
 import type { WorkoutEntry } from './types/workout';
 
 /**
