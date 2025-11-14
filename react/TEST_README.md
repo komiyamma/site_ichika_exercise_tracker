@@ -40,20 +40,24 @@ npm run test:coverage
 ```
 react/src/
 ├── test/
-│   └── setup.js                    # テストのセットアップファイル
+│   └── setup.ts                    # テストのセットアップファイル
 ├── storage/
-│   ├── localStorage.js
-│   └── localStorage.test.js        # localStorageのテスト
+│   ├── localStorage.ts
+│   └── localStorage.test.ts        # localStorageのテスト
 ├── date/
-│   ├── formatter.js
-│   └── formatter.test.js           # 日付フォーマット関数のテスト
+│   ├── formatter.ts
+│   └── formatter.test.ts           # 日付フォーマット関数のテスト
 ├── components/
-│   ├── WorkoutForm.jsx
-│   ├── WorkoutForm.test.jsx        # フォームコンポーネントのテスト
-│   ├── WorkoutTable.jsx
-│   └── WorkoutTable.test.jsx       # テーブルコンポーネントのテスト
-├── App.jsx
-└── App.test.jsx                    # 統合テスト
+│   ├── WorkoutForm.tsx
+│   ├── WorkoutForm.test.tsx        # フォームコンポーネントのテスト
+│   ├── WorkoutTable.tsx
+│   ├── WorkoutTable.test.tsx       # テーブルコンポーネントのテスト
+│   ├── FilterControls.tsx
+│   ├── FilterControls.test.tsx     # フィルターコンポーネントのテスト
+│   ├── DebugControls.tsx
+│   └── DebugControls.test.tsx      # デバッグコンポーネントのテスト
+├── App.tsx
+└── App.test.tsx                    # 統合テスト
 ```
 
 ## テストの内容

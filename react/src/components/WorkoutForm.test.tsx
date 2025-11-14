@@ -1,9 +1,10 @@
-import { describe, it, expect, vi, beforeEach } from 'vitest';
+import { describe, it, expect, vi, beforeEach, afterEach, type Mock } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
 import WorkoutForm from './WorkoutForm';
+import type { WorkoutEntry } from '../types/workout';
 
 describe('WorkoutForm', () => {
-  let mockOnAddEntry;
+  let mockOnAddEntry: Mock;
 
   beforeEach(() => {
     mockOnAddEntry = vi.fn();
@@ -29,7 +30,7 @@ describe('WorkoutForm', () => {
   it('初期値として今日の日付が設定されている', () => {
     render(<WorkoutForm onAddEntry={mockOnAddEntry} />);
 
-    const dateInput = screen.getByLabelText(/日付/);
+    const dateInput = screen.getByLabelText(/日付/) as HTMLInputElement;
     expect(dateInput).toHaveValue('2024-11-15');
   });
 
@@ -38,7 +39,7 @@ describe('WorkoutForm', () => {
 
     render(<WorkoutForm onAddEntry={mockOnAddEntry} />);
 
-    const form = screen.getByRole('button', { name: /追加する/ }).closest('form');
+    const form = screen.getByRole('button', { name: /追加する/ }).closest('form')!;
     fireEvent.submit(form);
 
     expect(alertSpy).toHaveBeenCalledWith('種類と日付は必須.');
@@ -52,24 +53,21 @@ describe('WorkoutForm', () => {
 
     render(<WorkoutForm onAddEntry={mockOnAddEntry} />);
 
-    // フォームに入力
-    const typeSelect = screen.getByLabelText(/種目/);
-    const minutesInput = screen.getByLabelText(/時間/);
-    const valueInput = screen.getByLabelText(/回数/);
-    const noteInput = screen.getByLabelText(/メモ/);
+    const typeSelect = screen.getByLabelText(/種目/) as HTMLSelectElement;
+    const minutesInput = screen.getByLabelText(/時間/) as HTMLInputElement;
+    const valueInput = screen.getByLabelText(/回数/) as HTMLInputElement;
+    const noteInput = screen.getByLabelText(/メモ/) as HTMLInputElement;
 
     fireEvent.change(typeSelect, { target: { value: 'ランニング' } });
     fireEvent.change(minutesInput, { target: { value: '30' } });
     fireEvent.change(valueInput, { target: { value: '5' } });
     fireEvent.change(noteInput, { target: { value: 'テストメモ' } });
 
-    // 送信
-    const form = screen.getByRole('button', { name: /追加する/ }).closest('form');
+    const form = screen.getByRole('button', { name: /追加する/ }).closest('form')!;
     fireEvent.submit(form);
 
-    // onAddEntryが正しい引数で呼ばれたか確認
     expect(mockOnAddEntry).toHaveBeenCalledTimes(1);
-    const calledEntry = mockOnAddEntry.mock.calls[0][0];
+    const calledEntry = mockOnAddEntry.mock.calls[0][0] as WorkoutEntry;
     
     expect(calledEntry).toMatchObject({
       type: 'ランニング',
@@ -85,20 +83,17 @@ describe('WorkoutForm', () => {
   it('送信後、フォームがリセットされる', () => {
     render(<WorkoutForm onAddEntry={mockOnAddEntry} />);
 
-    // フォームに入力
-    const typeSelect = screen.getByLabelText(/種目/);
-    const minutesInput = screen.getByLabelText(/時間/);
-    const noteInput = screen.getByLabelText(/メモ/);
+    const typeSelect = screen.getByLabelText(/種目/) as HTMLSelectElement;
+    const minutesInput = screen.getByLabelText(/時間/) as HTMLInputElement;
+    const noteInput = screen.getByLabelText(/メモ/) as HTMLInputElement;
 
     fireEvent.change(typeSelect, { target: { value: 'ランニング' } });
     fireEvent.change(minutesInput, { target: { value: '30' } });
     fireEvent.change(noteInput, { target: { value: 'テスト' } });
 
-    // 送信
-    const form = screen.getByRole('button', { name: /追加する/ }).closest('form');
+    const form = screen.getByRole('button', { name: /追加する/ }).closest('form')!;
     fireEvent.submit(form);
 
-    // フォームがリセットされているか確認
     expect(screen.getByLabelText(/種目/)).toHaveValue('');
     expect(screen.getByLabelText(/時間/)).toHaveValue(null);
     expect(screen.getByLabelText(/メモ/)).toHaveValue('');
@@ -107,13 +102,13 @@ describe('WorkoutForm', () => {
   it('数値が入力されていない場合は0として扱われる', () => {
     render(<WorkoutForm onAddEntry={mockOnAddEntry} />);
 
-    const typeSelect = screen.getByLabelText(/種目/);
+    const typeSelect = screen.getByLabelText(/種目/) as HTMLSelectElement;
     fireEvent.change(typeSelect, { target: { value: 'ウォーキング' } });
 
-    const form = screen.getByRole('button', { name: /追加する/ }).closest('form');
+    const form = screen.getByRole('button', { name: /追加する/ }).closest('form')!;
     fireEvent.submit(form);
 
-    const calledEntry = mockOnAddEntry.mock.calls[0][0];
+    const calledEntry = mockOnAddEntry.mock.calls[0][0] as WorkoutEntry;
     expect(calledEntry.minutes).toBe(0);
     expect(calledEntry.value).toBe(0);
   });

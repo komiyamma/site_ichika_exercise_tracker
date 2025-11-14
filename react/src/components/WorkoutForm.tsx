@@ -15,16 +15,16 @@ interface WorkoutFormProps {
   onAddEntry: (entry: WorkoutEntry) => void;
 }
 
-const INITIAL_FORM_STATE: FormData = {
+const getInitialFormState = (): FormData => ({
   type: '',
   date: getTodayString(),
   minutes: '',
   value: '',
   note: '',
-};
+});
 
 function WorkoutForm({ onAddEntry }: WorkoutFormProps) {
-  const [formData, setFormData] = useState<FormData>(INITIAL_FORM_STATE);
+  const [formData, setFormData] = useState<FormData>(getInitialFormState);
 
   const handleChange = useCallback((field: keyof FormData) => (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     setFormData(prev => ({ ...prev, [field]: e.target.value }));
@@ -50,7 +50,7 @@ function WorkoutForm({ onAddEntry }: WorkoutFormProps) {
     };
 
     onAddEntry(entry);
-    setFormData({ ...INITIAL_FORM_STATE, date: getTodayString() });
+    setFormData(getInitialFormState());
   }, [formData, onAddEntry]);
 
   const workoutOptions = useMemo(() => (

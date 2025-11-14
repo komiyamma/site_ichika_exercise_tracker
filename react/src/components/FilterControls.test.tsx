@@ -1,12 +1,12 @@
-import { describe, it, expect, vi } from 'vitest';
+import { describe, it, expect, vi, type Mock } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import FilterControls from './FilterControls';
 
 describe('FilterControls', () => {
   it('フィルターコントロールが正しくレンダリングされる', () => {
-    const mockOnFilterChange = vi.fn();
-    const mockOnClearFilter = vi.fn();
+    const mockOnFilterChange: Mock = vi.fn();
+    const mockOnClearFilter: Mock = vi.fn();
 
     render(
       <FilterControls
@@ -22,8 +22,8 @@ describe('FilterControls', () => {
 
   it('日付入力が変更されるとonFilterChangeが呼ばれる', async () => {
     const user = userEvent.setup();
-    const mockOnFilterChange = vi.fn();
-    const mockOnClearFilter = vi.fn();
+    const mockOnFilterChange: Mock = vi.fn();
+    const mockOnClearFilter: Mock = vi.fn();
 
     render(
       <FilterControls
@@ -41,8 +41,8 @@ describe('FilterControls', () => {
 
   it('絞り込み解除ボタンをクリックするとonClearFilterが呼ばれる', async () => {
     const user = userEvent.setup();
-    const mockOnFilterChange = vi.fn();
-    const mockOnClearFilter = vi.fn();
+    const mockOnFilterChange: Mock = vi.fn();
+    const mockOnClearFilter: Mock = vi.fn();
 
     render(
       <FilterControls
@@ -59,8 +59,8 @@ describe('FilterControls', () => {
   });
 
   it('filterDateの値が正しく表示される', () => {
-    const mockOnFilterChange = vi.fn();
-    const mockOnClearFilter = vi.fn();
+    const mockOnFilterChange: Mock = vi.fn();
+    const mockOnClearFilter: Mock = vi.fn();
 
     render(
       <FilterControls
@@ -70,7 +70,7 @@ describe('FilterControls', () => {
       />
     );
 
-    const dateInput = screen.getByLabelText(/日付で絞り込み/);
+    const dateInput = screen.getByLabelText(/日付で絞り込み/) as HTMLInputElement;
     expect(dateInput).toHaveValue('2024-11-15');
   });
 });

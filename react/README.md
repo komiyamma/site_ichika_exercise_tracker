@@ -21,7 +21,10 @@ localStorageのキー名（`ichikaWorkoutLogEntries`）とデータ構造は元�
 ## 技術スタック
 
 - **React 19** - UIライブラリ
+- **TypeScript** - 型安全性
 - **Vite** - ビルドツール
+- **Vitest** - テストフレームワーク
+- **React Testing Library** - コンポーネントテスト
 - **バニラCSS** - スタイリング（元の実装と同じスタイル）
 
 ## プロジェクト構成
@@ -30,16 +33,23 @@ localStorageのキー名（`ichikaWorkoutLogEntries`）とデータ構造は元�
 react/
 ├── src/
 │   ├── components/          # Reactコンポーネント
-│   │   ├── WorkoutForm.jsx      # 記録入力フォーム
-│   │   ├── FilterControls.jsx   # フィルタリング操作
-│   │   └── WorkoutTable.jsx     # 記録一覧テーブル
+│   │   ├── WorkoutForm.tsx      # 記録入力フォーム
+│   │   ├── FilterControls.tsx   # フィルタリング操作
+│   │   ├── WorkoutTable.tsx     # 記録一覧テーブル
+│   │   └── DebugControls.tsx    # デバッグ操作
+│   ├── hooks/               # カスタムフック
+│   │   └── useLocalStorage.ts   # localStorage同期フック
 │   ├── storage/             # データ永続化
-│   │   └── localStorage.js      # localStorage操作
+│   │   └── localStorage.ts      # localStorage操作
 │   ├── date/                # 日付処理
-│   │   └── formatter.js         # 日付フォーマット関数
-│   ├── App.jsx              # メインアプリケーション
+│   │   └── formatter.ts         # 日付フォーマット関数
+│   ├── constants/           # 定数定義
+│   │   └── workoutTypes.ts      # 運動種目の定数
+│   ├── types/               # 型定義
+│   │   └── workout.ts           # WorkoutEntry型
+│   ├── App.tsx              # メインアプリケーション
 │   ├── App.css              # スタイル（元の実装と同じ）
-│   └── main.jsx             # エントリーポイント
+│   └── main.tsx             # エントリーポイント
 ├── index.html               # HTMLテンプレート
 └── package.json             # 依存関係
 ```

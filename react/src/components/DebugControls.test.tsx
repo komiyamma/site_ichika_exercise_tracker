@@ -1,11 +1,11 @@
-import { describe, it, expect, vi } from 'vitest';
+import { describe, it, expect, vi, type Mock } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import DebugControls from './DebugControls';
 
 describe('DebugControls', () => {
   it('デバッグコントロールが正しくレンダリングされる', () => {
-    const mockOnClearAllData = vi.fn();
+    const mockOnClearAllData: Mock = vi.fn();
 
     render(<DebugControls onClearAllData={mockOnClearAllData} />);
 
@@ -14,7 +14,7 @@ describe('DebugControls', () => {
 
   it('全削除ボタンをクリックするとonClearAllDataが呼ばれる', async () => {
     const user = userEvent.setup();
-    const mockOnClearAllData = vi.fn();
+    const mockOnClearAllData: Mock = vi.fn();
 
     render(<DebugControls onClearAllData={mockOnClearAllData} />);
 

@@ -1,9 +1,8 @@
-import { describe, it, expect, beforeEach, vi } from 'vitest';
+import { describe, it, expect, beforeEach } from 'vitest';
 import { loadEntriesFromStorage, saveEntriesToStorage, clearStorage } from './localStorage';
 
 describe('localStorage関数', () => {
   beforeEach(() => {
-    // 各テスト前にlocalStorageをクリア
     localStorage.clear();
   });
 
@@ -15,8 +14,8 @@ describe('localStorage関数', () => {
 
     it('保存されたデータを正しく読み込む', () => {
       const testData = [
-        { id: '1', type: 'ランニング', date: '2024-11-15' },
-        { id: '2', type: 'ウォーキング', date: '2024-11-14' }
+        { id: '1', type: 'ランニング', date: '2024-11-15', minutes: 30, value: 5, note: '', createdAt: 1700000000000 },
+        { id: '2', type: 'ウォーキング', date: '2024-11-14', minutes: 20, value: 3, note: '', createdAt: 1699900000000 }
       ];
       localStorage.setItem('ichikaWorkoutLogEntries', JSON.stringify(testData));
 
@@ -35,26 +34,26 @@ describe('localStorage関数', () => {
   describe('saveEntriesToStorage', () => {
     it('データを正しく保存する', () => {
       const testData = [
-        { id: '1', type: 'ランニング', date: '2024-11-15' }
+        { id: '1', type: 'ランニング', date: '2024-11-15', minutes: 30, value: 5, note: '', createdAt: 1700000000000 }
       ];
 
       saveEntriesToStorage(testData);
 
       const saved = localStorage.getItem('ichikaWorkoutLogEntries');
-      expect(JSON.parse(saved)).toEqual(testData);
+      expect(JSON.parse(saved!)).toEqual(testData);
     });
 
     it('空配列を保存できる', () => {
       saveEntriesToStorage([]);
 
       const saved = localStorage.getItem('ichikaWorkoutLogEntries');
-      expect(JSON.parse(saved)).toEqual([]);
+      expect(JSON.parse(saved!)).toEqual([]);
     });
   });
 
   describe('clearStorage', () => {
     it('保存されたデータを削除する', () => {
-      const testData = [{ id: '1', type: 'ランニング' }];
+      const testData = [{ id: '1', type: 'ランニング', date: '2024-11-15', minutes: 30, value: 5, note: '', createdAt: 1700000000000 }];
       localStorage.setItem('ichikaWorkoutLogEntries', JSON.stringify(testData));
 
       clearStorage();

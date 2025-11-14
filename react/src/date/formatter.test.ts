@@ -3,7 +3,6 @@ import { getTodayString } from './formatter';
 
 describe('getTodayString', () => {
   beforeEach(() => {
-    // 日付を固定（2024年11月15日）
     vi.useFakeTimers();
     vi.setSystemTime(new Date('2024-11-15T10:00:00Z'));
   });
