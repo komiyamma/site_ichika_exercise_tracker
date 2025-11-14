@@ -1,9 +1,15 @@
-import { useMemo, useCallback } from 'react';
-import PropTypes from 'prop-types';
+import { useMemo, useCallback, type MouseEvent } from 'react';
+import type { WorkoutEntry } from '../types/workout';
 
-const TABLE_HEADERS = ['日付', '種目', '時間(分)', '回数/距離', 'メモ', '操作'];
+interface WorkoutTableProps {
+  entries: WorkoutEntry[];
+  filterDate: string;
+  onDeleteEntry: (id: string) => void;
+}
 
-function WorkoutTable({ entries, filterDate, onDeleteEntry }) {
+const TABLE_HEADERS = ['日付', '種目', '時間(分)', '回数/距離', 'メモ', '操作'] as const;
+
+function WorkoutTable({ entries, filterDate, onDeleteEntry }: WorkoutTableProps) {
   const filteredEntries = useMemo(() => {
     const filtered = filterDate
       ? entries.filter(entry => entry.date === filterDate)
@@ -12,7 +18,8 @@ function WorkoutTable({ entries, filterDate, onDeleteEntry }) {
     return [...filtered].sort((a, b) => b.createdAt - a.createdAt);
   }, [entries, filterDate]);
 
-  const handleDelete = useCallback((id) => () => {
+  const handleDelete = useCallback((id: string) => (e: MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
     onDeleteEntry(id);
   }, [onDeleteEntry]);
 
@@ -47,23 +54,5 @@ function WorkoutTable({ entries, filterDate, onDeleteEntry }) {
     </>
   );
 }
-
-WorkoutTable.propTypes = {
-  entries: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    date: PropTypes.string.isRequired,
-    type: PropTypes.string.isRequired,
-    minutes: PropTypes.number,
-    value: PropTypes.number,
-    note: PropTypes.string,
-    createdAt: PropTypes.number.isRequired,
-  })).isRequired,
-  filterDate: PropTypes.string,
-  onDeleteEntry: PropTypes.func.isRequired,
-};
-
-WorkoutTable.defaultProps = {
-  filterDate: '',
-};
 
 export default WorkoutTable;

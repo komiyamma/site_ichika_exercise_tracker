@@ -1,7 +1,11 @@
-/**
- * フィルタリング操作コンポーネント
- */
+import { useCallback } from 'react';
+import PropTypes from 'prop-types';
+
 function FilterControls({ filterDate, onFilterChange, onClearFilter }) {
+  const handleChange = useCallback((e) => {
+    onFilterChange(e.target.value);
+  }, [onFilterChange]);
+
   return (
     <div>
       <div>
@@ -10,7 +14,7 @@ function FilterControls({ filterDate, onFilterChange, onClearFilter }) {
           id="filter-date"
           type="date"
           value={filterDate}
-          onChange={(e) => onFilterChange(e.target.value)}
+          onChange={handleChange}
         />
       </div>
       <div>
@@ -19,5 +23,15 @@ function FilterControls({ filterDate, onFilterChange, onClearFilter }) {
     </div>
   );
 }
+
+FilterControls.propTypes = {
+  filterDate: PropTypes.string,
+  onFilterChange: PropTypes.func.isRequired,
+  onClearFilter: PropTypes.func.isRequired,
+};
+
+FilterControls.defaultProps = {
+  filterDate: '',
+};
 
 export default FilterControls;

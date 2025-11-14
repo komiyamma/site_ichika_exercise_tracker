@@ -1,9 +1,21 @@
-import { useState, useCallback, useMemo } from 'react';
-import PropTypes from 'prop-types';
+import { useState, useCallback, useMemo, type FormEvent, type ChangeEvent } from 'react';
 import { getTodayString } from '../date/formatter';
 import { WORKOUT_TYPES } from '../constants/workoutTypes';
+import type { WorkoutEntry } from '../types/workout';
 
-const INITIAL_FORM_STATE = {
+interface FormData {
+  type: string;
+  date: string;
+  minutes: string;
+  value: string;
+  note: string;
+}
+
+interface WorkoutFormProps {
+  onAddEntry: (entry: WorkoutEntry) => void;
+}
+
+const INITIAL_FORM_STATE: FormData = {
   type: '',
   date: getTodayString(),
   minutes: '',
@@ -11,14 +23,14 @@ const INITIAL_FORM_STATE = {
   note: '',
 };
 
-function WorkoutForm({ onAddEntry }) {
-  const [formData, setFormData] = useState(INITIAL_FORM_STATE);
+function WorkoutForm({ onAddEntry }: WorkoutFormProps) {
+  const [formData, setFormData] = useState<FormData>(INITIAL_FORM_STATE);
 
-  const handleChange = useCallback((field) => (e) => {
+  const handleChange = useCallback((field: keyof FormData) => (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     setFormData(prev => ({ ...prev, [field]: e.target.value }));
   }, []);
 
-  const handleSubmit = useCallback((e) => {
+  const handleSubmit = useCallback((e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     if (!formData.type || !formData.date) {
@@ -27,7 +39,7 @@ function WorkoutForm({ onAddEntry }) {
     }
 
     const timestamp = Date.now();
-    const entry = {
+    const entry: WorkoutEntry = {
       id: String(timestamp),
       date: formData.date,
       type: formData.type,
@@ -115,9 +127,5 @@ function WorkoutForm({ onAddEntry }) {
     </>
   );
 }
-
-WorkoutForm.propTypes = {
-  onAddEntry: PropTypes.func.isRequired,
-};
 
 export default WorkoutForm;

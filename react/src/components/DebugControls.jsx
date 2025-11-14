@@ -1,6 +1,5 @@
-/**
- * デバッグ操作コンポーネント
- */
+import PropTypes from 'prop-types';
+
 function DebugControls({ onClearAllData }) {
   return (
     <div>
@@ -8,5 +7,9 @@ function DebugControls({ onClearAllData }) {
     </div>
   );
 }
+
+DebugControls.propTypes = {
+  onClearAllData: PropTypes.func.isRequired,
+};
 
 export default DebugControls;
