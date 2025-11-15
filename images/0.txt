@@ -1,0 +1,4 @@
+file '1.png'
+duration 6
+file '2.png'
+duration 6
