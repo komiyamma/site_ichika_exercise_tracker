@@ -188,7 +188,7 @@ function renderEntryTable() {
     for (const currentEntry of filteredEntries) {
         const { id, date, type, minutes, value, note} = currentEntry;
         
-        // 1行ずつ HTML を組み立てる（Delete ボタンには data-id を付与）
+        // 1行ずつ HTML を組み立てる（Delete ボタンには を押したら、id付きで関数を呼び出す）
         tableHtml +=
             `<tr>
                 <td>${escapeHtml(date)}</td>
