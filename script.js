@@ -187,6 +187,7 @@ function renderEntryTable() {
     let tableHtml = '';
     for (const currentEntry of filteredEntries) {
         const { id, date, type, minutes, value, note} = currentEntry;
+        
         // 1行ずつ HTML を組み立てる（Delete ボタンには data-id を付与）
         tableHtml +=
             `<tr>
@@ -196,7 +197,9 @@ function renderEntryTable() {
                 <td class="text-center">${escapeHtml(value || '')}</td>
                 <td>${escapeHtml(note || '')}</td>
                 <td class="text-end">
-                    <button class="delete-button btn btn-sm btn-outline-danger" onclick="removeButtonClick('${id}')">Delete</button>
+                    <button class="delete-button btn btn-sm btn-outline-danger" onclick="removeButtonClick('${id}')">
+                        <i class="bi bi-trash"></i><span class="d-none d-sm-inline">Delete</span>
+                    </button>
                 </td>
             </tr>`;
     }
