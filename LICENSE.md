@@ -1,0 +1,38 @@
+# 画像に関するライセンス（Image License）
+
+本リポジトリに含まれる画像ファイル（.pngなど）は、
+特に明記がない限りすべて著作権者に帰属します。
+
+以下の行為を、著作権者の事前の書面による許可なく行うことを**一切禁止**します。
+
+- 再配布
+- 商用・非商用を問わないあらゆる利用
+
+画像を利用したい場合は、必ず事前に著作権者へお問い合わせください。
+
+---
+
+# テキストおよびソースコードに関するライセンス（MIT License）
+
+以下の MIT ライセンスは、このリポジトリ内の**テキスト（文章）およびソースコード**にのみ適用されます。  
+上記の**画像ファイルには一切適用されません**。
+
+Copyright (c) 2025 Akitsugu Komiyama
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the “Software”), to deal
+in the Software without restriction, including without limitation the rights  
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell  
+copies of the Software, and to permit persons to whom the Software is  
+furnished to do so, subject to the following conditions:  
+
+The above copyright notice and this permission notice shall be included in all  
+copies or substantial portions of the Software.  
+
+THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR  
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,  
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE  
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER  
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,  
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE  
+SOFTWARE.
