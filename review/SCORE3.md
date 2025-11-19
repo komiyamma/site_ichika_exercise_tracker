@@ -1,4 +1,4 @@
-# Claude 系AIによる評価
+# Claude系AIによる評価
 
 # 教材評価レポート：JavaScript 4ヶ月目の学生向け妥当性分析
 
