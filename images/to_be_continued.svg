@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="520" height="90" role="img">
+  <style>
+    @media (prefers-color-scheme: dark) { .fg { fill: #f8f8f8; } }
+    @media (prefers-color-scheme: light) { .fg { fill: #111; } }
+  </style>
+  <text
+    x="50%"
+    y="62%"
+    text-anchor="middle"
+    font-family="Segoe UI, sans-serif"
+    font-size="36"
+    font-style="italic"
+    font-weight="700"
+    class="fg"
+  >
+    To be continued...
+  </text>
+</svg>
