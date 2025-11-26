@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="80" role="img">
+  <style>
+    @media (prefers-color-scheme: dark) { .fg { fill: #f8f8f8; } }
+    @media (prefers-color-scheme: light) { .fg { fill: #111; } }
+  </style>
+  <text
+    x="0"
+    y="55%"
+    dominant-baseline="middle"
+    text-anchor="start"
+    font-family="Segoe UI, sans-serif"
+    font-size="24"
+    font-weight="600"
+    class="fg"
+  >
+    💬 「感じるわ ──
+  </text>
+</svg>

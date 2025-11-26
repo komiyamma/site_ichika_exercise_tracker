@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="120" role="img">
+  <style>
+    @media (prefers-color-scheme: dark) { .fg { fill: #f8f8f8; } }
+    @media (prefers-color-scheme: light) { .fg { fill: #111; } }
+  </style>
+  <text
+    x="12"
+    y="50%"
+    dominant-baseline="middle"
+    text-anchor="start"
+    font-family="Segoe UI, sans-serif"
+    font-size="24"
+    font-weight="600"
+    class="fg"
+  >
+    💬 「感じるわ ──
+  </text>
+  <text
+    x="500"
+    y="85%"
+    dominant-baseline="middle"
+    text-anchor="end"
+    font-family="Segoe UI, sans-serif"
+    font-size="24"
+    font-weight="600"
+    class="fg"
+  >
+    ── 新たな光を☕️」
+  </text>
+</svg>
