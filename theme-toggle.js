@@ -1,3 +1,4 @@
+// 本体アプリではないので、定義がグローバルとして残らないようにしている
 {
     const THEME_PREFERENCE_STORAGE_KEY = 'ichikaThemePreference';
     const THEMES = {
@@ -40,4 +41,4 @@
     function applyTheme(theme) {
         document.documentElement.setAttribute('data-bs-theme', theme);
     }
-};
+}
