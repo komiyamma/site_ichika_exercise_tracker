@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="120" role="img">
+  <style>
+    @media (prefers-color-scheme: dark) { .fg { fill: #f8f8f8; } }
+    @media (prefers-color-scheme: light) { .fg { fill: #111; } }
+  </style>
+  <text
+    x="8"
+    y="46%"
+    dominant-baseline="middle"
+    text-anchor="start"
+    font-family="Segoe UI, sans-serif"
+    font-size="32"
+    font-weight="600"
+    class="fg"
+  >
+    <tspan x="8" dy="0" textLength="784" lengthAdjust="spacingAndGlyphs">───── このアプリの完成は、終わりではない。 　　　　　</tspan>
+    <tspan x="8" dy="1.35em" textLength="784" lengthAdjust="spacingAndGlyphs">　　　　　 おぬしが紡ぐ、新たな章の始まりじゃ ─────</tspan>
+  </text>
+</svg>
