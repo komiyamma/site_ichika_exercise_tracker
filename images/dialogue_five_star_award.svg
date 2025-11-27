@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="140" viewBox="0 0 800 140" role="img" aria-labelledby="title">
+  <title>💬 「おめでとう！ ここまで到達したあなたには、 星 ⭐️⭐️⭐️⭐️⭐️ ね！」</title>
+  <style>
+    @media (prefers-color-scheme: dark) { .fg { fill: #f8f8f8; } }
+    @media (prefers-color-scheme: light) { .fg { fill: #111; } }
+  </style>
+  <text
+    x="24"
+    y="42"
+    font-family="'Segoe UI', 'Noto Sans JP', sans-serif"
+    font-size="32"
+    font-weight="700"
+    class="fg"
+  >
+    <tspan x="24" dy="0">💬 「おめでとう！</tspan>
+    <tspan x="24" dy="1.35em">　 　 ここまで到達したあなたには、</tspan>
+    <tspan x="24" dy="1.35em">　 　 星 ⭐️⭐️⭐️⭐️⭐️ ね！」</tspan>
+  </text>
+</svg>
