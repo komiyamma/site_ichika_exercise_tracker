@@ -7,9 +7,9 @@
   <text
     x="64"
     y="56"
-    font-family="'Yu Gothic UI Light', 'Segoe UI Variable Text', 'Segoe UI', 'Noto Sans JP', sans-serif"
+    font-family="'Segoe UI Variable Text', 'Segoe UI Semilight', 'Yu Gothic UI', 'Segoe UI', 'Noto Sans JP', sans-serif"
     font-size="28"
-    font-weight="400"
+    font-weight="350"
     class="fg"
   >
     <tspan x="32" dy="0">よくぞ、この最後のページまで</tspan>
