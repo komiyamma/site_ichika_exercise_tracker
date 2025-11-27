@@ -22,7 +22,6 @@ const WORKOUT_STORAGE_KEY = 'ichikaWorkoutLogEntries';
  */
 let entryFormElement;
 let listContainerElement; // Changed from entryListElement (table) to listContainerElement (div)
-let totalCountElement;
 let totalCountDisplayElement; // New for the stats card
 let totalMinutesDisplayElement; // New for the stats card
 let filterDateInputElement;
@@ -56,7 +55,6 @@ function initializePage() {
 function assignElementReferences() {
     entryFormElement = document.getElementById('entry-form');
     listContainerElement = document.getElementById('list-container');
-    totalCountElement = document.getElementById('total-count');
     totalCountDisplayElement = document.getElementById('total-count-display');
     totalMinutesDisplayElement = document.getElementById('total-minutes-display');
     filterDateInputElement = document.getElementById('filter-date');
@@ -182,7 +180,6 @@ function renderEntryList() {
     const totalCount = filteredEntries.length;
     const totalMinutes = filteredEntries.reduce((sum, entry) => sum + (entry.minutes || 0), 0);
 
-    if (totalCountElement) totalCountElement.textContent = String(totalCount);
     if (totalCountDisplayElement) totalCountDisplayElement.textContent = String(totalCount);
     if (totalMinutesDisplayElement) totalMinutesDisplayElement.textContent = String(totalMinutes);
 
