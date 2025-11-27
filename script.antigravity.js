@@ -225,12 +225,10 @@ function renderEntryList() {
                         <div>
                             <div class="d-flex align-items-center gap-2 mb-1">
                                 <span class="workout-type-badge ${badgeClass}">${escapeHtml(type)}</span>
-                                ${minutes ? `<span class="small text-muted"><i class="bi bi-clock me-1"></i>${escapeHtml(minutes)} 分</span>` : ''}
+                                ${minutes ? `<span class="small text-muted d-inline-flex align-items-center"><i class="bi bi-clock me-1"></i>${escapeHtml(minutes)} 分</span>` : ''}
+                                ${value ? `<span class="small text-muted d-inline-flex align-items-center"><i class="bi bi-repeat me-1"></i>${escapeHtml(value)}</span>` : ''}
                             </div>
-                            <div class="small text-muted">
-                                ${value ? `<span class="me-2"><i class="bi bi-repeat me-1"></i>${escapeHtml(value)}</span>` : ''}
-                                ${note ? `<span><i class="bi bi-chat-left-text me-1"></i>${escapeHtml(note)}</span>` : ''}
-                            </div>
+                            ${note ? `<div class="small text-muted"><i class="bi bi-chat-left-text me-1"></i>${escapeHtml(note)}</div>` : ''}
                         </div>
                     </div>
                     <button class="btn btn-icon btn-sm text-danger opacity-50 hover-opacity-100" onclick="removeButtonClick('${id}')" title="削除">
