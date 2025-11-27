@@ -25,7 +25,6 @@ let listContainerElement; // Changed from entryListElement (table) to listContai
 let totalCountElement;
 let totalCountDisplayElement; // New for the stats card
 let totalMinutesDisplayElement; // New for the stats card
-let totalValueDisplayElement; // New for the stats card
 let filterDateInputElement;
 let clearFilterButtonElement;
 let debugClearStorageButtonElement;
@@ -60,7 +59,6 @@ function assignElementReferences() {
     totalCountElement = document.getElementById('total-count');
     totalCountDisplayElement = document.getElementById('total-count-display');
     totalMinutesDisplayElement = document.getElementById('total-minutes-display');
-    totalValueDisplayElement = document.getElementById('total-value-display');
     filterDateInputElement = document.getElementById('filter-date');
     clearFilterButtonElement = document.getElementById('clear-filter');
     debugClearStorageButtonElement = document.getElementById('debug-clear-storage');
@@ -183,12 +181,10 @@ function renderEntryList() {
     // Update stats
     const totalCount = filteredEntries.length;
     const totalMinutes = filteredEntries.reduce((sum, entry) => sum + (entry.minutes || 0), 0);
-    const totalValue = filteredEntries.reduce((sum, entry) => sum + (entry.value || 0), 0);
 
     if (totalCountElement) totalCountElement.textContent = String(totalCount);
     if (totalCountDisplayElement) totalCountDisplayElement.textContent = String(totalCount);
     if (totalMinutesDisplayElement) totalMinutesDisplayElement.textContent = String(totalMinutes);
-    if (totalValueDisplayElement) totalValueDisplayElement.textContent = String(totalValue);
 
     if (filteredEntries.length === 0) {
         listContainerElement.innerHTML = `
