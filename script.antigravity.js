@@ -228,7 +228,7 @@ function renderEntryList() {
                                 ${minutes ? `<span class="small text-muted"><i class="bi bi-clock me-1"></i>${escapeHtml(minutes)} 分</span>` : ''}
                             </div>
                             <div class="small text-muted">
-                                ${value ? `<span class="me-2"><i class="bi bi-hash me-1"></i>${escapeHtml(value)}</span>` : ''}
+                                ${value ? `<span class="me-2"><i class="bi bi-repeat me-1"></i>${escapeHtml(value)}</span>` : ''}
                                 ${note ? `<span><i class="bi bi-chat-left-text me-1"></i>${escapeHtml(note)}</span>` : ''}
                             </div>
                         </div>
