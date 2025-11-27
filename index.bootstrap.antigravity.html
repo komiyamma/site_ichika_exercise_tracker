@@ -119,14 +119,39 @@
             transition: all 0.2s;
         }
 
-        .btn-icon:hover {
-            background-color: rgba(0, 0, 0, 0.05);
-        }
+            .btn-icon:hover {
+                background-color: rgba(0, 0, 0, 0.05);
+            }
 
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
+            /* Dark theme button contrast tweaks */
+            [data-bs-theme="dark"] .btn-outline-secondary {
+                color: #e6e6e6;
+                border-color: rgba(255, 255, 255, 0.35);
+            }
+
+            [data-bs-theme="dark"] .btn-outline-secondary:hover,
+            [data-bs-theme="dark"] .btn-outline-secondary:focus {
+                background-color: rgba(255, 255, 255, 0.08);
+                color: #fff;
+                border-color: rgba(255, 255, 255, 0.5);
+            }
+
+            [data-bs-theme="dark"] .btn-outline-danger {
+                color: #ffb3b8;
+                border-color: rgba(255, 179, 184, 0.5);
+            }
+
+            [data-bs-theme="dark"] .btn-outline-danger:hover,
+            [data-bs-theme="dark"] .btn-outline-danger:focus {
+                background-color: rgba(255, 99, 132, 0.12);
+                color: #ffccd2;
+                border-color: rgba(255, 179, 184, 0.7);
+            }
+
+            /* Custom Scrollbar */
+            ::-webkit-scrollbar {
+                width: 8px;
+            }
 
         ::-webkit-scrollbar-track {
             background: transparent;
