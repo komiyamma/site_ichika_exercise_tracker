@@ -209,24 +209,32 @@
         }
 
         /* List Items */
-        .workout-item {
-            border-left: 4px solid transparent;
-            transition: all 0.2s;
-        }
+            .workout-item {
+                border-left: 4px solid transparent;
+                transition: all 0.2s;
+            }
 
         .workout-item:hover {
             background-color: rgba(0, 0, 0, 0.02);
         }
 
-        [data-bs-theme="dark"] .workout-item:hover {
-            background-color: rgba(255, 255, 255, 0.05);
-        }
+            [data-bs-theme="dark"] .workout-item:hover {
+                background-color: rgba(255, 255, 255, 0.05);
+            }
 
-        .workout-type-badge {
-            padding: 0.35em 0.8em;
-            border-radius: 8px;
-            font-size: 0.75em;
-            font-weight: 600;
+            .workout-details {
+                display: flex;
+                flex-direction: column;
+                gap: 0.35rem;
+                justify-content: center;
+                min-height: 48px;
+            }
+
+            .workout-type-badge {
+                padding: 0.35em 0.8em;
+                border-radius: 8px;
+                font-size: 0.75em;
+                font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 0.5px;
         }

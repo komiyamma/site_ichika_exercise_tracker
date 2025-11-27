@@ -218,8 +218,8 @@ function renderEntryList() {
                         <div class="text-center" style="min-width: 50px;">
                             <div class="small text-muted fw-bold">${dateFormatted}</div>
                         </div>
-                        <div>
-                            <div class="d-flex align-items-center gap-2 mb-1">
+                        <div class="workout-details">
+                            <div class="d-flex align-items-center gap-2 flex-wrap">
                                 <span class="workout-type-badge ${badgeClass}">${escapeHtml(type)}</span>
                                 ${minutes ? `<span class="small text-muted d-inline-flex align-items-center"><i class="bi bi-clock me-1"></i>${escapeHtml(minutes)} 分</span>` : ''}
                                 ${value ? `<span class="small text-muted d-inline-flex align-items-center"><i class="bi bi-repeat me-1"></i>${escapeHtml(value)}</span>` : ''}
