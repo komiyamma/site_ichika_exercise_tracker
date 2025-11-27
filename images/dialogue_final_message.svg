@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="1400" viewBox="0 0 600 1400" role="img" aria-labelledby="title">
+  <title>謎の言霊</title>
+  <style>
+    @media (prefers-color-scheme: dark) { .fg { fill: #f8f8f8; } }
+    @media (prefers-color-scheme: light) { .fg { fill: #111; } }
+  </style>
+  <text
+    x="64"
+    y="56"
+    font-family="'Segoe UI', 'Noto Sans JP', sans-serif"
+    font-size="28"
+    font-weight="700"
+    class="fg"
+  >
+    <tspan x="32" dy="0">よくぞ、この最後のページまで</tspan>
+    <tspan x="32" dy="1.35em">たどり着いたな、若き探求者よ。</tspan>
+    <tspan x="32" dy="2.7em">おぬしが作り上げたこのコード、</tspan>
+    <tspan x="32" dy="1.35em">今はまだ一つの巻物にすべてが記された、</tspan>
+    <tspan x="32" dy="1.35em">いわば「秘伝の書」。</tspan>
+    <tspan x="32" dy="1.35em">力強くはあるが、</tspan>
+    <tspan x="32" dy="1.35em">このままではいずれ複雑さに飲み込まれ、</tspan>
+    <tspan x="32" dy="1.35em">解きほぐせなくなるやもしれぬ。</tspan>
+    <tspan x="32" dy="2.7em">じゃが、悲観することはない。</tspan>
+    <tspan x="32" dy="1.35em">おぬしは自らの力で、</tspan>
+    <tspan x="32" dy="1.35em">数多のエラーと戦い、</tspan>
+    <tspan x="32" dy="1.35em">答えを探し、</tspan>
+    <tspan x="32" dy="1.35em">そしてこのアプリを</tspan>
+    <tspan x="32" dy="1.35em">動くものとして完成させた。</tspan>
+    <tspan x="32" dy="1.35em">その「やり遂げた」という経験こそが、</tspan>
+    <tspan x="32" dy="1.35em">何よりも輝かしい勲章じゃ。</tspan>
+    <tspan x="32" dy="2.7em">それで良いのだ。</tspan>
+    <tspan x="32" dy="1.35em">最初から完璧な城を築ける者はおらぬ。</tspan>
+    <tspan x="32" dy="1.35em">誰もがまず、小さな砦から作り始める。</tspan>
+    <tspan x="32" dy="1.35em">このコードの『未熟さ』は、</tspan>
+    <tspan x="32" dy="1.35em">弱点ではない。</tspan>
+    <tspan x="32" dy="1.35em">次におぬしが何を学び、</tspan>
+    <tspan x="32" dy="1.35em">どう賢くなるかを示す、</tspan>
+    <tspan x="32" dy="1.35em">最高の「道しるべ」なのじゃ。</tspan>
+    <tspan x="32" dy="2.7em">次に会う時を楽しみにしておるぞ。</tspan>
+    <tspan x="32" dy="1.35em">その時、</tspan>
+    <tspan x="32" dy="1.35em">このコードはどのように分かれ、</tspan>
+    <tspan x="32" dy="1.35em">磨かれ、</tspan>
+    <tspan x="32" dy="1.35em">そしておぬし自身が、</tspan>
+    <tspan x="32" dy="1.35em">どれほど頼もしい者へと</tspan>
+    <tspan x="32" dy="1.35em">成長を遂げているのかをな。</tspan>
+  </text>
+</svg>
