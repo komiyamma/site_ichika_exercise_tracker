@@ -1,246 +1,429 @@
 <!doctype html>
 <html lang="ja" data-bs-theme="light">
 
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>Antigravity Fitness Tracker</title>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Antigravity Fitness Tracker</title>
 
-        <!-- Fonts -->
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-        <!-- Bootstrap & Icons -->
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <!-- Bootstrap & Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
-        <style>
-            :root {
-                --font-main: 'Outfit', sans-serif;
-                --glass-bg: rgba(255, 255, 255, 0.7);
-                --glass-border: rgba(255, 255, 255, 0.5);
-                --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
-                --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-                --bg-gradient: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
-                --card-radius: 24px;
-                --input-radius: 16px;
-                --transition-speed: 0.3s;
+    <style>
+        :root {
+            --font-main: 'Outfit', sans-serif;
+            --glass-bg: rgba(255, 255, 255, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.5);
+            --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
+            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --bg-gradient: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
+            --card-radius: 24px;
+            --input-radius: 16px;
+            --transition-speed: 0.3s;
+        }
+
+        [data-bs-theme="dark"] {
+            --glass-bg: rgba(30, 30, 40, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+            --bg-gradient: linear-gradient(to right, #243949 0%, #517fa4 100%);
+            /* Deep blue gradient */
+            --bs-body-color: #e0e0e0;
+        }
+
+        body {
+            font-family: var(--font-main);
+            background: var(--bg-gradient);
+            min-height: 100vh;
+            transition: background 0.5s ease;
+        }
+
+        /* Glassmorphism Card */
+        .glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--card-radius);
+            box-shadow: var(--glass-shadow);
+            transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+        }
+
+        .glass-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 40px 0 rgba(31, 38, 135, 0.15);
+        }
+
+        /* Form Controls */
+        .form-control,
+        .form-select {
+            border-radius: var(--input-radius);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            padding: 0.75rem 1rem;
+            background-color: rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(4px);
+            transition: all 0.2s;
+        }
+
+        [data-bs-theme="dark"] .form-control,
+        [data-bs-theme="dark"] .form-select {
+            background-color: rgba(0, 0, 0, 0.2);
+            border-color: rgba(255, 255, 255, 0.1);
+            color: #fff;
+        }
+
+        .form-control:focus,
+        .form-select:focus {
+            box-shadow: 0 0 0 4px rgba(118, 75, 162, 0.15);
+            border-color: #764ba2;
+            background-color: rgba(255, 255, 255, 0.8);
+        }
+
+        [data-bs-theme="dark"] .form-control:focus,
+        [data-bs-theme="dark"] .form-select:focus {
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+
+        /* Buttons */
+        .btn-primary-gradient {
+            background: var(--primary-gradient);
+            border: none;
+            color: white;
+            border-radius: var(--input-radius);
+            padding: 0.75rem 1.5rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            box-shadow: 0 4px 15px rgba(118, 75, 162, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary-gradient:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 6px 20px rgba(118, 75, 162, 0.4);
+            color: white;
+        }
+
+        .btn-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+        }
+
+        .btn-icon:hover {
+            background-color: rgba(0, 0, 0, 0.05);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: rgba(150, 150, 150, 0.3);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(150, 150, 150, 0.5);
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
             }
 
-            [data-bs-theme="dark"] {
-                --glass-bg: rgba(30, 30, 40, 0.7);
-                --glass-border: rgba(255, 255, 255, 0.1);
-                --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
-                --bg-gradient: linear-gradient(to right, #243949 0%, #517fa4 100%);
-                /* Deep blue gradient */
-                --bs-body-color: #e0e0e0;
+            to {
+                opacity: 1;
+                transform: translateY(0);
             }
+        }
 
-            body {
-                font-family: var(--font-main);
-                background: var(--bg-gradient);
-                min-height: 100vh;
-                transition: background 0.5s ease;
-            }
+        .animate-fade-in {
+            animation: fadeIn 0.4s ease-out forwards;
+        }
 
-            /* Glassmorphism Card */
-            .glass-card {
-                background: var(--glass-bg);
-                backdrop-filter: blur(12px);
-                -webkit-backdrop-filter: blur(12px);
-                border: 1px solid var(--glass-border);
-                border-radius: var(--card-radius);
-                box-shadow: var(--glass-shadow);
-                transition: transform var(--transition-speed), box-shadow var(--transition-speed);
-            }
+        /* Stats Cards */
+        .stat-card {
+            background: rgba(255, 255, 255, 0.4);
+            border-radius: 20px;
+            padding: 1.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
 
-            .glass-card:hover {
-                transform: translateY(-2px);
-                box-shadow: 0 12px 40px 0 rgba(31, 38, 135, 0.15);
-            }
+        [data-bs-theme="dark"] .stat-card {
+            background: rgba(0, 0, 0, 0.2);
+        }
 
-            /* Form Controls */
-            .form-control,
-            .form-select {
-                border-radius: var(--input-radius);
-                border: 1px solid rgba(0, 0, 0, 0.1);
-                padding: 0.75rem 1rem;
-                background-color: rgba(255, 255, 255, 0.5);
-                backdrop-filter: blur(4px);
-                transition: all 0.2s;
-            }
+        .stat-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 16px;
+            background: var(--primary-gradient);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
 
-            [data-bs-theme="dark"] .form-control,
-            [data-bs-theme="dark"] .form-select {
-                background-color: rgba(0, 0, 0, 0.2);
-                border-color: rgba(255, 255, 255, 0.1);
-                color: #fff;
-            }
+        /* List Items */
+        .workout-item {
+            border-left: 4px solid transparent;
+            transition: all 0.2s;
+        }
 
-            .form-control:focus,
-            .form-select:focus {
-                box-shadow: 0 0 0 4px rgba(118, 75, 162, 0.15);
-                border-color: #764ba2;
-                background-color: rgba(255, 255, 255, 0.8);
-            }
+        .workout-item:hover {
+            background-color: rgba(0, 0, 0, 0.02);
+        }
 
-            [data-bs-theme="dark"] .form-control:focus,
-            [data-bs-theme="dark"] .form-select:focus {
-                background-color: rgba(0, 0, 0, 0.4);
-            }
+        [data-bs-theme="dark"] .workout-item:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+        }
 
-            /* Buttons */
-            .btn-primary-gradient {
-                background: var(--primary-gradient);
-                border: none;
-                color: white;
-                border-radius: var(--input-radius);
-                padding: 0.75rem 1.5rem;
-                font-weight: 600;
-                letter-spacing: 0.5px;
-                box-shadow: 0 4px 15px rgba(118, 75, 162, 0.3);
-                transition: all 0.3s ease;
-            }
+        .workout-type-badge {
+            padding: 0.35em 0.8em;
+            border-radius: 8px;
+            font-size: 0.75em;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
 
-            .btn-primary-gradient:hover {
-                transform: translateY(-1px);
-                box-shadow: 0 6px 20px rgba(118, 75, 162, 0.4);
-                color: white;
-            }
+        .type-walking {
+            background-color: #e3f2fd;
+            color: #1976d2;
+        }
 
-            .btn-icon {
-                width: 40px;
-                height: 40px;
-                border-radius: 50%;
-                display: inline-flex;
-                align-items: center;
-                justify-content: center;
-                transition: all 0.2s;
-            }
+        .type-running {
+            background-color: #ffebee;
+            color: #c62828;
+        }
 
-            .btn-icon:hover {
-                background-color: rgba(0, 0, 0, 0.05);
-            }
+        .type-cycling {
+            background-color: #e8f5e9;
+            color: #2e7d32;
+        }
 
-            /* Custom Scrollbar */
-            ::-webkit-scrollbar {
-                width: 8px;
-            }
+        .type-training {
+            background-color: #f3e5f5;
+            color: #7b1fa2;
+        }
 
-            ::-webkit-scrollbar-track {
-                background: transparent;
-            }
+        .type-other {
+            background-color: #fff3e0;
+            color: #ef6c00;
+        }
 
-            ::-webkit-scrollbar-thumb {
-                background: rgba(150, 150, 150, 0.3);
-                border-radius: 4px;
-            }
+        [data-bs-theme="dark"] .type-walking {
+            background-color: rgba(25, 118, 210, 0.2);
+            color: #90caf9;
+        }
 
-            ::-webkit-scrollbar-thumb:hover {
-                background: rgba(150, 150, 150, 0.5);
-            }
+        [data-bs-theme="dark"] .type-running {
+            background-color: rgba(198, 40, 40, 0.2);
+            color: #ef9a9a;
+        }
 
-            /* Animations */
-            @keyframes fadeIn {
-                from {
-                    opacity: 0;
-                    transform: translateY(10px);
-                }
+        [data-bs-theme="dark"] .type-cycling {
+            background-color: rgba(46, 125, 50, 0.2);
+            color: #a5d6a7;
+        }
 
-                to {
-                    opacity: 1;
-                    transform: translateY(0);
-                }
-            }
+        [data-bs-theme="dark"] .type-training {
+            background-color: rgba(123, 31, 162, 0.2);
+            color: #ce93d8;
+        }
 
-            .animate-fade-in {
-                animation: fadeIn 0.4s ease-out forwards;
-            }
+        [data-bs-theme="dark"] .type-other {
+            background-color: rgba(239, 108, 0, 0.2);
+            color: #ffcc80;
+        }
+    </style>
+</head>
 
-            /* Stats Cards */
-            .stat-card {
-                background: rgba(255, 255, 255, 0.4);
-                border-radius: 20px;
-                padding: 1.5rem;
-                border: 1px solid rgba(255, 255, 255, 0.2);
-            }
+<body>
+    <div class="container py-4 py-lg-5">
+        <!-- Header -->
+        <header class="d-flex justify-content-between align-items-center mb-5 animate-fade-in">
+            <div>
+                <h1 class="fw-bold mb-0 d-flex align-items-center gap-2">
+                    <i class="bi bi-activity text-primary"></i>
+                    <span style="background: var(--primary-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">運動トラッカー</span>
+                </h1>
+                <p class="text-muted small mb-0 mt-1">進捗を記録して、目標を達成しましょう。</p>
+            </div>
 
-            [data-bs-theme="dark"] .stat-card {
-                background: rgba(0, 0, 0, 0.2);
-            }
+            <div class="d-flex align-items-center gap-3">
+                <div class="form-check form-switch m-0">
+                    <input class="form-check-input" type="checkbox" role="switch" id="theme-toggle" style="cursor: pointer;">
+                    <label class="form-check-label" for="theme-toggle">
+                        <i class="bi bi-moon-stars-fill" id="theme-icon"></i>
+                    </label>
+                </div>
+            </div>
+        </header>
 
-            .stat-icon {
-                width: 48px;
-                height: 48px;
-                border-radius: 16px;
-                background: var(--primary-gradient);
-                color: white;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                font-size: 1.5rem;
-                margin-bottom: 1rem;
-            }
+        <div class="row g-4">
+            <!-- Left Column: Input Form -->
+            <div class="col-lg-4 mb-4 mb-lg-0 animate-fade-in" style="animation-delay: 0.1s;">
+                <div class="glass-card p-4 h-100">
+                    <h2 class="h5 fw-bold mb-4 d-flex align-items-center gap-2">
+                        <i class="bi bi-plus-circle-fill text-primary"></i> 新しい記録
+                    </h2>
 
-            /* List Items */
-            .workout-item {
-                border-left: 4px solid transparent;
-                transition: all 0.2s;
-            }
+                    <form id="entry-form" class="vstack gap-3">
+                        <div>
+                            <label class="form-label small text-muted fw-bold text-uppercase">種目</label>
+                            <div class="input-group">
+                                <span class="input-group-text bg-transparent border-end-0"><i class="bi bi-tag"></i></span>
+                                <select id="type" class="form-select border-start-0 ps-0" required>
+                                    <option value="" disabled selected>選択してください...</option>
+                                    <option value="ウォーキング">ウォーキング</option>
+                                    <option value="ランニング">ランニング</option>
+                                    <option value="通学の徒歩">通学の徒歩</option>
+                                    <option value="筋トレ">筋トレ</option>
+                                    <option value="なわとび">なわとび</option>
+                                    <option value="その他">その他</option>
+                                </select>
+                            </div>
+                        </div>
 
-            .workout-item:hover {
-                background-color: rgba(0, 0, 0, 0.02);
-            }
+                        <div>
+                            <label class="form-label small text-muted fw-bold text-uppercase">日付</label>
+                            <div class="input-group">
+                                <span class="input-group-text bg-transparent border-end-0"><i class="bi bi-calendar4"></i></span>
+                                <input id="date" type="date" class="form-control border-start-0 ps-0" required>
+                            </div>
+                        </div>
 
-            [data-bs-theme="dark"] .workout-item:hover {
-                background-color: rgba(255, 255, 255, 0.05);
-            }
+                        <div class="row g-2">
+                            <div class="col-6">
+                                <label class="form-label small text-muted fw-bold text-uppercase">時間 (分)</label>
+                                <div class="input-group">
+                                    <span class="input-group-text bg-transparent border-end-0"><i class="bi bi-stopwatch"></i></span>
+                                    <input id="minutes" type="number" class="form-control border-start-0 ps-0" min="0" placeholder="0">
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <label class="form-label small text-muted fw-bold text-uppercase">回数</label>
+                                <div class="input-group">
+                                    <span class="input-group-text bg-transparent border-end-0"><i class="bi bi-repeat"></i></span>
+                                    <input id="value" type="number" class="form-control border-start-0 ps-0" min="0" placeholder="0">
+                                </div>
+                            </div>
+                        </div>
 
-            .workout-type-badge {
-                padding: 0.35em 0.8em;
-                border-radius: 8px;
-                font-size: 0.75em;
-                font-weight: 600;
-                text-transform: uppercase;
-                letter-spacing: 0.5px;
-            }
+                        <div>
+                            <label class="form-label small text-muted fw-bold text-uppercase">メモ</label>
+                            <div class="input-group">
+                                <span class="input-group-text bg-transparent border-end-0"><i class="bi bi-pencil"></i></span>
+                                <input id="note" type="text" class="form-control border-start-0 ps-0" placeholder="ひとことメモ...">
+                            </div>
+                        </div>
 
-            .type-walking {
-                background-color: #e3f2fd;
-                color: #1976d2;
-            }
+                        <button class="btn btn-primary-gradient w-100 mt-2" type="submit">
+                            <i class="bi bi-plus-lg me-1"></i> 追加する
+                        </button>
+                    </form>
+                </div>
+            </div>
 
-            .type-running {
-                background-color: #ffebee;
-                color: #c62828;
-            }
+            <!-- Right Column: Stats & List -->
+            <div class="col-lg-8 animate-fade-in" style="animation-delay: 0.2s;">
 
-            .type-cycling {
-                background-color: #e8f5e9;
-                color: #2e7d32;
-            }
+                <!-- Stats Row -->
+                <div class="row g-3 mb-4">
+                    <div class="col-lg-4 col-md-6">
+                        <div class="glass-card stat-card d-flex align-items-center gap-3">
+                            <div class="stat-icon">
+                                <i class="bi bi-trophy"></i>
+                            </div>
+                            <div>
+                                <div class="small text-muted fw-bold text-uppercase">合計記録数</div>
+                                <div class="h2 fw-bold mb-0" id="total-count-display">0</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="glass-card stat-card d-flex align-items-center gap-3">
+                            <div class="stat-icon" style="background: linear-gradient(135deg, #FF9966 0%, #FF5E62 100%);">
+                                <i class="bi bi-fire"></i>
+                            </div>
+                            <div>
+                                <div class="small text-muted fw-bold text-uppercase">合計時間 (分)</div>
+                                <div class="h2 fw-bold mb-0" id="total-minutes-display">0</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="glass-card stat-card d-flex align-items-center gap-3">
+                            <div class="stat-icon" style="background: linear-gradient(135deg, #1D976C 0%, #93F9B9 100%);">
+                                <i class="bi bi-repeat"></i>
+                            </div>
+                            <div>
+                                <div class="small text-muted fw-bold text-uppercase">合計回数</div>
+                                <div class="h2 fw-bold mb-0" id="total-value-display">0</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-            .type-training {
-                background-color: #f3e5f5;
-                color: #7b1fa2;
-            }
+                <!-- Filter & Actions -->
+                <div class="d-flex flex-wrap gap-2 align-items-center mb-3 justify-content-between">
+                    <h2 class="h5 fw-bold mb-0"><i class="bi bi-clock-history me-2"></i>最近の活動</h2>
 
-            .type-other {
-                background-color: #fff3e0;
-                color: #ef6c00;
-            }
+                    <div class="d-flex gap-2">
+                        <div class="input-group input-group-sm" style="width: auto;">
+                            <span class="input-group-text bg-transparent border-end-0"><i class="bi bi-funnel"></i></span>
+                            <input id="filter-date" type="date" class="form-control form-control-sm border-start-0">
+                        </div>
+                        <button id="clear-filter" class="btn btn-sm btn-outline-secondary rounded-pill px-3" title="フィルタ解除">
+                            解除
+                        </button>
+                        <button id="debug-clear-storage" class="btn btn-sm btn-outline-danger rounded-pill px-3" title="全データを削除">
+                            <i class="bi bi-trash"></i> ALL
+                        </button>
+                    </div>
+                </div>
 
-            [data-bs-theme="dark"] .type-walking {
-                background-color: rgba(25, 118, 210, 0.2);
-                color: #90caf9;
-            }
+                <!-- List -->
+                <div class="glass-card p-0 overflow-hidden">
+                    <div id="list-container" class="list-group list-group-flush" style="max-height: 600px; overflow-y: auto;">
+                        <!-- Entries will be injected here -->
+                        <div class="text-center p-5 text-muted">
+                            <i class="bi bi-inbox fs-1 d-block mb-2 opacity-50"></i>
+                            記録がありません。運動を始めましょう！
+                        </div>
+                    </div>
+                </div>
 
-            [data-bs-theme="dark"] .type-running {
-                background-color: rgba(198, 40, 40, 0.2);
-                color: #ef9a9a;
-            }
+                <!-- Hidden total count for script compatibility if needed, though I'll use total-count-display -->
+                <span id="total-count" class="d-none">0</span>
 
-            < !-- Header --><header class="d-flex justify-content-between align-items-center mb-5 animate-fade-in"><div><h1 class="fw-bold mb-0 d-flex align-items-center gap-2"><i class="bi bi-activity text-primary"></i><span style="background: var(--primary-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">運動トラッカー</span></h1><p class="text-muted small mb-0 mt-1">進捗を記録して、目標を達成しましょう。</p></div><div class="d-flex align-items-center gap-3"><div class="form-check form-switch m-0"><input class="form-check-input" type="checkbox" role="switch" id="theme-toggle" style="cursor: pointer;"><label class="form-check-label" for="theme-toggle"><i class="bi bi-moon-stars-fill" id="theme-icon"></i></label></div></div></header><div class="row g-4">< !-- Left Column: Input Form --><div class="col-lg-4 mb-4 mb-lg-0 animate-fade-in" style="animation-delay: 0.1s;"><div class="glass-card p-4 h-100"><h2 class="h5 fw-bold mb-4 d-flex align-items-center gap-2"><i class="bi bi-plus-circle-fill text-primary"></i>新しい記録 </h2><form id="entry-form" class="vstack gap-3"><div><label class="form-label small text-muted fw-bold text-uppercase">種目</label><div class="input-group"><span class="input-group-text bg-transparent border-end-0"><i class="bi bi-tag"></i></span><select id="type" class="form-select border-start-0 ps-0" required><option value="" disabled selected>選択してください...</option><option value="ウォーキング">ウォーキング</option><option value="ランニング">ランニング</option><option value="通学の徒歩">通学の徒歩</option><option value="筋トレ">筋トレ</option><option value="なわとび">なわとび</option><option value="その他">その他</option></select></div></div><div><label class="form-label small text-muted fw-bold text-uppercase">日付</label><div class="input-group"><span class="input-group-text bg-transparent border-end-0"><i class="bi bi-calendar4"></i></span><input id="date" type="date" class="form-control border-start-0 ps-0" required></div></div><div class="row g-2"><div class="col-6"><label class="form-label small text-muted fw-bold text-uppercase">時間 (分)</label><div class="input-group"><span class="input-group-text bg-transparent border-end-0"><i class="bi bi-stopwatch"></i></span><input id="minutes" type="number" class="form-control border-start-0 ps-0" min="0" placeholder="0"></div></div><div class="col-6"><label class="form-label small text-muted fw-bold text-uppercase">回数</label><div class="input-group"><span class="input-group-text bg-transparent border-end-0"><i class="bi bi-repeat"></i></span><input id="value" type="number" class="form-control border-start-0 ps-0" min="0" placeholder="0"></div></div></div><div><label class="form-label small text-muted fw-bold text-uppercase">メモ</label><div class="input-group"><span class="input-group-text bg-transparent border-end-0"><i class="bi bi-pencil"></i></span><input id="note" type="text" class="form-control border-start-0 ps-0" placeholder="ひとことメモ..."></div></div><button class="btn btn-primary-gradient w-100 mt-2" type="submit"><i class="bi bi-plus-lg me-1"></i>追加する </button></form></div></div>< !-- Right Column: Stats & List --><div class="col-lg-8 animate-fade-in" style="animation-delay: 0.2s;">< !-- Stats Row --><div class="row g-3 mb-4"><div class="col-lg-4 col-md-6"><div class="glass-card stat-card d-flex align-items-center gap-3"><div class="stat-icon"><i class="bi bi-trophy"></i></div><div><div class="small text-muted fw-bold text-uppercase">合計記録数</div><div class="h2 fw-bold mb-0" id="total-count-display">0</div></div></div></div><div class="col-lg-4 col-md-6"><div class="glass-card stat-card d-flex align-items-center gap-3"><div class="stat-icon" style="background: linear-gradient(135deg, #FF9966 0%, #FF5E62 100%);"><i class="bi bi-fire"></i></div><div><div class="small text-muted fw-bold text-uppercase">合計時間 (分)</div><div class="h2 fw-bold mb-0" id="total-minutes-display">0</div></div></div></div><div class="col-lg-4 col-md-6"><div class="glass-card stat-card d-flex align-items-center gap-3"><div class="stat-icon" style="background: linear-gradient(135deg, #1D976C 0%, #93F9B9 100%);"><i class="bi bi-repeat"></i></div><div><div class="small text-muted fw-bold text-uppercase">合計回数</div><div class="h2 fw-bold mb-0" id="total-value-display">0</div></div></div></div></div>< !-- Filter & Actions --><div class="d-flex flex-wrap gap-2 align-items-center mb-3 justify-content-between"><h2 class="h5 fw-bold mb-0"><i class="bi bi-clock-history me-2"></i>最近の活動</h2><div class="d-flex gap-2"><div class="input-group input-group-sm" style="width: auto;"><span class="input-group-text bg-transparent border-end-0"><i class="bi bi-funnel"></i></span><input id="filter-date" type="date" class="form-control form-control-sm border-start-0"></div><button id="clear-filter" class="btn btn-sm btn-outline-secondary rounded-pill px-3" title="フィルタ解除">解除 </button><button id="debug-clear-storage" class="btn btn-sm btn-outline-danger rounded-pill px-3" title="全データを削除"><i class="bi bi-trash"></i>ALL </button></div></div>< !-- List --><div class="glass-card p-0 overflow-hidden"><div id="list-container" class="list-group list-group-flush" style="max-height: 600px; overflow-y: auto;">< !-- Entries will be injected here --><div class="text-center p-5 text-muted"><i class="bi bi-inbox fs-1 d-block mb-2 opacity-50"></i>記録がありません。運動を始めましょう！ </div></div></div>< !-- Hidden total count for script compatibility if needed,
-            though I'll use total-count-display -->
- <span id="total-count" class="d-none">0</span></div></div></div><script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script><script src="theme-toggle.js"></script><script src="script.antigravity.js"></script></body></html>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="theme-toggle.js"></script>
+    <script src="script.antigravity.js"></script>
+</body>
+
+</html>
