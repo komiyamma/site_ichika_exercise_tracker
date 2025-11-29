@@ -13,7 +13,7 @@
     font-weight="600"
     class="fg"
   >
-    <tspan x="8" dy="0" textLength="784" lengthAdjust="spacingAndGlyphs">──── このアプリの完成は、終わりではない。 　　　　</tspan>
-    <tspan x="8" dy="1.35em" textLength="784" lengthAdjust="spacingAndGlyphs">　　　　 おぬしが紡ぐ、新たな章の始まりじゃ ────</tspan>
+    <tspan x="8" dy="0" textLength="784" lengthAdjust="spacingAndGlyphs">─── このアプリの完成は、終わりではない。 　　　　</tspan>
+    <tspan x="8" dy="1.35em" textLength="784" lengthAdjust="spacingAndGlyphs">　　　　 おぬしが紡ぐ、新たな章の始まりじゃ ───</tspan>
   </text>
 </svg>
