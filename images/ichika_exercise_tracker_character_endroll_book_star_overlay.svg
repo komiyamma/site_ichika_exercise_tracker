@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
-  <image href="./ichika_exercise_tracker_character_endroll_book_kotatsu.png" x="0" y="0" width="1024" height="1024" />
+  <image href="./images/ichika_exercise_tracker_character_endroll_book_kotatsu.png" x="0" y="0" width="1024" height="1024" />
   <defs>
     <filter id="goldShadow" x="-20%" y="-20%" width="140%" height="140%">
       <feDropShadow dx="0" dy="1.5" stdDeviation="3" flood-color="#000" flood-opacity="0.35" />
